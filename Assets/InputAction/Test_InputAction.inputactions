@@ -1,0 +1,122 @@
+{
+    "name": "Test_InputAction",
+    "maps": [
+        {
+            "name": "Test",
+            "id": "9bbb792e-add5-4041-b8e1-3cae12bbc83b",
+            "actions": [
+                {
+                    "name": "Test1",
+                    "type": "Button",
+                    "id": "359cdff5-da30-4265-970f-c5128fd10aad",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Test2",
+                    "type": "Button",
+                    "id": "631decc9-de0a-4528-b968-f4c1e4ea2382",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Test3",
+                    "type": "Button",
+                    "id": "89b28b6c-57ad-4f47-8278-343745c19c70",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Test4",
+                    "type": "Button",
+                    "id": "41471c0c-f063-4bd2-ba2b-2bebf68642ea",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "df74d8b8-4c52-47ca-8ec6-3f9e5893da23",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Test1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "20408683-c07a-4d87-bd62-adde187b9ec1",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Test2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7bd50209-34b9-4d55-bc90-8ebc0034babc",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Test3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c216db49-6041-4ff7-93f4-558a77d26347",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Test4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "TestUI",
+            "id": "1b22f716-ace1-4998-a712-b117ccd4a7fd",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "2953f1c8-6359-4efa-ac49-f9ef8abb9263",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "016154c4-80cd-4dd9-8069-faa5949eac5b",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
