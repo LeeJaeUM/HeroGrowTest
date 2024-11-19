@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Test_02_DefaultInputSystem : TestBase
 {
-    PlayerInput playerInput;
+    public PlayerInput playerInput;
    // Vector2 pointerVec = new Vector2();
 
     private void Start()
