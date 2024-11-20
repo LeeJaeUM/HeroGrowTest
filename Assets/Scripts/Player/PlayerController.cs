@@ -1,13 +1,11 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class TestPlayer_2 : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public Vector3 inputVecView = new Vector3();
     public Vector3 moveVec = new Vector3();
     public float speed = 2;
     Rigidbody rigid;
-
 
     private void Awake()
     {
@@ -16,7 +14,7 @@ public class TestPlayer_2 : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.OnMoveAction += PlayerMove;
+        InputManager.Instance.OnMoveAction += PlayerMove;
     }
 
     private void FixedUpdate()

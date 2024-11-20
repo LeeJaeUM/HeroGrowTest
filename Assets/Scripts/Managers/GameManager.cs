@@ -11,6 +11,11 @@ public enum GameState
 }
 public class GameManager : Singleton<GameManager>
 {
+    readonly int Scene_Title_Hash = Animator.StringToHash("01_Title");
+    readonly int Scene_Main_Hash = Animator.StringToHash("02_Lobby");
+    readonly int Scene_Ingame_Hash = Animator.StringToHash("03_InGame");
+
+    [SerializeField]
     private GameState _currentState;
     public GameState CurrentState
     {
@@ -19,6 +24,31 @@ public class GameManager : Singleton<GameManager>
         {
             if (_currentState != value)
             {
+                ////상태가 바뀌기 전에 상태에 따라 실행
+                //switch (_currentState)
+                //{
+                //    case GameState.MainMenu:
+                //        break;
+                //    case GameState.InGame:
+                //        break;
+                //    case GameState.Paused:
+                //        break;
+                //    case GameState.GameOver:
+                //        break;
+                //}
+                //_currentState = value;
+                ////상태가 바뀐 뒤 상태에 따라 실행
+                //switch (_currentState)
+                //{
+                //    case GameState.MainMenu:
+                //        break;
+                //    case GameState.InGame:
+                //        break;
+                //    case GameState.Paused:
+                //        break;
+                //    case GameState.GameOver:
+                //        break;
+                //}
                 _currentState = value;
                 OnGameStateChanged?.Invoke(_currentState);  // 상태가 변경될 때마다 이벤트 호출
             }
@@ -47,44 +77,31 @@ public class GameManager : Singleton<GameManager>
     // 게임 시작
     public void StartGame()
     {
-        if (_currentState == GameState.MainMenu || _currentState == GameState.GameOver)
-        {
-            Debug.Log("Game Started");
-            CurrentState = GameState.InGame;
+        Debug.Log("Game Started");
+        CurrentState = GameState.InGame;
 
-            // 씬 전환 (게임 씬으로 이동)
-            LoadScene("GameScene");
-
-            // 게임 시간 측정 시작
-            isGameActive = true;
-            playTimeCoroutine = StartCoroutine(TrackPlayTime());
-        }
+        // 게임 시간 측정 시작
+        isGameActive = true;
+        playTimeCoroutine = StartCoroutine(TrackPlayTime());
     }   // 게임 종료
     public void EndGame()
     {
-        if (_currentState == GameState.InGame)
-        {
-            Debug.Log("Game Over");
-            CurrentState = GameState.GameOver;
+        Debug.Log("Game Over");
+        CurrentState = GameState.GameOver;
 
-            // 게임이 끝난 후 처리 로직 (점수 저장 등)
-            SaveGameData();
+        // 게임이 끝난 후 처리 로직 (점수 저장 등)
+        SaveGameData();
 
-            // 게임 종료 후 메인 메뉴로 이동
-            LoadScene("MainMenu");
-        }
+        // 게임 종료 후 메인 메뉴로 이동
     }
 
     // 게임 일시정지
     public void PauseGame()
     {
-        if (_currentState == GameState.InGame)
-        {
-            CurrentState = GameState.Paused;
-            isGameActive = false;  // 게임을 일시정지 상태로 만듦
-            Time.timeScale = 0;  // 게임 시간을 멈춤 (물리적 시간도 멈춤)
-            Debug.Log("Game Paused");
-        }
+        CurrentState = GameState.Paused;
+        isGameActive = false;  // 게임을 일시정지 상태로 만듦
+        Time.timeScale = 0;  // 게임 시간을 멈춤 (물리적 시간도 멈춤)
+        Debug.Log("Game Paused");
     }
 
     // 게임 재개
@@ -100,10 +117,10 @@ public class GameManager : Singleton<GameManager>
     }
 
     // 씬 로드 처리
-    private void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+    //private void LoadScene(string sceneName)
+    //{
+    //    SceneManager.LoadScene(sceneName);
+    //}
 
     // 게임 데이터를 저장하는 메서드 (예시)
     private void SaveGameData()
@@ -130,6 +147,7 @@ public class GameManager : Singleton<GameManager>
         Debug.Log($"Current Game State: {_currentState}");
     }
 
+    #region SceneMove_StateVersion
     public void ChangeToTitle()
     {
         SceneManager.LoadScene("01_Title");
@@ -138,5 +156,7 @@ public class GameManager : Singleton<GameManager>
     {
         SceneManager.LoadScene("02_Lobby");
     }
+    #endregion
+
 
 }

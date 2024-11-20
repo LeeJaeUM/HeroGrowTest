@@ -39,6 +39,8 @@ public class UIManager : Singleton<UIManager>
             case GameState.GameOver:
                 //ShowGameOverScreen();
                 break;
+            default: print("현재 없는 UI 상태다");
+                break;
         }
     }
 
