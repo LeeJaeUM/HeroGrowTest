@@ -27,7 +27,6 @@ public class InputManager : Singleton<InputManager>
 
     void OnMove(InputValue inputValue)
     {
-        print($"이동벡터 X값 : {inputValue.Get<Vector2>().x}, Y값 : {inputValue.Get<Vector2>().y}");
         OnMoveAction?.Invoke(inputValue.Get<Vector2>());
     }
 

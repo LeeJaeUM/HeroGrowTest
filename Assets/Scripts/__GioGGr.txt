@@ -5,5 +5,16 @@ GameManager
 InputManager
 UIManager
 
+PlayerController
+EnemyController
 
-Player
+CharacterCombatBase
+PlayerCombat
+EnemyCombat
+
+이 게임에서 플레이어가 트리거로 처리할 것은 Eenmy, EnemyBullet, 보물상자(LootBox) 이 세개다.
+이 중 보물상자는 보물상자가 플레이어에 닿으면 삭제 및 UI처리로 넘기면 
+플레이어가 처리할 트리거는 힐팩, 코인, 버프아이템을 제외하면 
+오직 플레이어에 데미지를 주는 것 밖에 없다. 
+
+일단 조건문으로 각자 다르게 작성함

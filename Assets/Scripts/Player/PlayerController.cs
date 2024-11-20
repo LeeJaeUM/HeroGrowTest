@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove(Vector2 inputVec)
     {
-        print("Test프레이어2 에서 이동중");
         inputVecView.x = inputVec.x;
         inputVecView.z = inputVec.y;
         moveVec = inputVecView * speed * Time.fixedDeltaTime;
