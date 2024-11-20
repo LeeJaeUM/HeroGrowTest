@@ -18,3 +18,20 @@ EnemyCombat
 오직 플레이어에 데미지를 주는 것 밖에 없다. 
 
 일단 조건문으로 각자 다르게 작성함
+
+공격을 관리하는 클래스가 
+공격을 
+
+
+OntriggerEnter쓸떄 other 에서 찾을 때
+TryGetComponent 사용하자
+
+onTriggerEnter를 가지는 애는 
+각 PlayerManager EnemyManager 
+Combat으로 적었던 애들은 그런식으로 앞에
+
+PlayerCombat
+EnemyCombat
+이렇게 사용자를 정해두면 안된다.
+
+필요한 기능만 담고 있어야한다.

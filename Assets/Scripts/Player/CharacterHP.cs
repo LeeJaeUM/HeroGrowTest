@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CharacterCombatBase : MonoBehaviour
+public class CharacterHP : MonoBehaviour
 {
     // 체력 관련 변수
     [SerializeField]
