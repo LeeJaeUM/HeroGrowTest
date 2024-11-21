@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class EnemySpawner : ObjectSpawner
 {
+    [Header("Spawn EnclosingCircle")]
     public float radius = 5f;   // 반지름 (5 단위로 설정)
     public int addAngle = 10;   // 원형 생성 시 하나당 생성할 각도
+
+    [Header("skip Instantiate")]
     public int skipAngle = 0;   // 원형 생성 시 비워 둘 각도
     public int skipCount = 3;   // 원형 생성 시 이어서 비울 갯수
 

@@ -6,10 +6,20 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField]
     CharacterHP characterHP;
+    public GameObject dropCoin;
 
     private void Start()
     {
         characterHP = GetComponent<CharacterHP>();
+    }
+
+    private void OnEnable()
+    {
+        characterHP.onDead += DeadEnemy;
+    }
+    private void OnDisable()
+    {
+        characterHP.onDead -= DeadEnemy;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -34,6 +44,18 @@ public class EnemyManager : MonoBehaviour
         if (characterHP != null)
         {
             characterHP.DecreaseHP(amount);
+
+            if(characterHP.isDead)
+            {
+                DeadEnemy();
+
+            }
         }
+    }
+
+    public void DeadEnemy()
+    {
+        Instantiate(dropCoin);
+        Destroy(gameObject);
     }
 }
