@@ -3,10 +3,25 @@ using UnityEngine.InputSystem;
 
 public class Test_07_BulletSpawn : TestBase
 {
-    public BulletSpawner bulletSpawner;
+    public ObjectSpawner bulletSpawner;
+    public EnemySpawner enemySpawner;
 
     protected override void OnTest1(InputAction.CallbackContext context)
     {
-        bulletSpawner.SpawnBullet();
+        bulletSpawner.SpawnObject();
+    }
+
+    protected override void OnTest2(InputAction.CallbackContext context)
+    {
+        enemySpawner.SpawnObject();
+    }
+    protected override void OnTest3(InputAction.CallbackContext context)
+    {
+        enemySpawner.SpawnEnclosingCircle();
+    }
+
+    protected override void OnTest4(InputAction.CallbackContext context)
+    {
+        enemySpawner.SpawnEnclosingCircle_RandomMinus();
     }
 }

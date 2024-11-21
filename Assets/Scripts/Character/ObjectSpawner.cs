@@ -1,11 +1,9 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.AI;
 
-public class BulletSpawner : MonoBehaviour
+public class ObjectSpawner : MonoBehaviour
 {
-    public GameObject bulletPrefab;  // Bullet 프리팹
-    public Transform bulletSpawnPoint;  // Bullet이 생성될 위치
+    public GameObject objectPrefab;  // Bullet 프리팹
+    public Transform objectSpawnPoint;  // Bullet이 생성될 위치
     public Transform target;  // 플레이어 Transform
 
     void Start()
@@ -40,11 +38,11 @@ public class BulletSpawner : MonoBehaviour
     //transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
 
     // 총알을 생성하는 함수
-    public void SpawnBullet()
+    public virtual void SpawnObject()
     {
-        if (bulletPrefab != null && bulletSpawnPoint != null)
+        if (objectPrefab != null && objectSpawnPoint != null)
         {
-            Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
+            Instantiate(objectPrefab, objectSpawnPoint.position, objectSpawnPoint.rotation);
         }
         else
         {
