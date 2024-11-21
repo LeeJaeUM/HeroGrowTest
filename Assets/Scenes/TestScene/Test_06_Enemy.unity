@@ -360,13 +360,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 449030440593173339, guid: e578fea7ea7b8c240ad0b029773f9c1c, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8062216673115002774, guid: e578fea7ea7b8c240ad0b029773f9c1c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.89
       objectReference: {fileID: 0}
     - target: {fileID: 8062216673115002774, guid: e578fea7ea7b8c240ad0b029773f9c1c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -374,7 +370,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8062216673115002774, guid: e578fea7ea7b8c240ad0b029773f9c1c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -2.03
       objectReference: {fileID: 0}
     - target: {fileID: 8062216673115002774, guid: e578fea7ea7b8c240ad0b029773f9c1c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -748,8 +744,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a210543b3da82d043af17cfa48569e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 0
-  attackPower: 5
 --- !u!1 &1478605694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1187,10 +1181,6 @@ PrefabInstance:
     - target: {fileID: 3743588209120397481, guid: 473d02adc713ad5468e9125278b4351d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8314637490116839764, guid: 473d02adc713ad5468e9125278b4351d, type: 3}
-      propertyPath: target
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

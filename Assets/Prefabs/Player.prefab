@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 5382933189987611044}
   - component: {fileID: 6247621110421272040}
   - component: {fileID: 1950933157291645833}
-  - component: {fileID: 5383640192000049136}
   - component: {fileID: 8788682141383322132}
+  - component: {fileID: 5383640192000049136}
+  - component: {fileID: 903270857476920877}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -136,8 +137,22 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8788682141383322132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177388759015595402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09a72cb2fd1505499d1adab2948acbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterHP: {fileID: 0}
+  invincibilityDuration: 2
 --- !u!114 &5383640192000049136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,7 +168,7 @@ MonoBehaviour:
   inputVecView: {x: 0, y: 0, z: 0}
   moveVec: {x: 0, y: 0, z: 0}
   speed: 4
---- !u!114 &8788682141383322132
+--- !u!114 &903270857476920877
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,8 +177,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1177388759015595402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d09a72cb2fd1505499d1adab2948acbf, type: 3}
+  m_Script: {fileID: 11500000, guid: 81e4daf98c6b78448b886378ee1cb9d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curHealth: 0
-  attackPower: 5
+  curHP: 0
