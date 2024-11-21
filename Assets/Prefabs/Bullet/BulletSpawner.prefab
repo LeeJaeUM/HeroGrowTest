@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2536103977983651173}
   - component: {fileID: 3397126819076646422}
   - component: {fileID: 8064930651610065839}
-  - component: {fileID: 3338442801411336118}
+  - component: {fileID: -2508972902577831593}
   m_Layer: 0
   m_Name: BulletSpawner
   m_TagString: Untagged
@@ -140,7 +140,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
---- !u!114 &3338442801411336118
+--- !u!114 &-2508972902577831593
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4797396475090613293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94e3adea7022e1a4f9cf0ce1871599ae, type: 3}
+  m_Script: {fileID: 11500000, guid: 90c522a0f1cfd474e89a977a1683d7a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   objectPrefab: {fileID: 5634601396463828578, guid: 10a6cec243ed7d54e87d0cb9b6373f6b, type: 3}

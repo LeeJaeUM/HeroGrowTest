@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Test_07_BulletSpawn : TestBase
 {
-    public ObjectSpawner bulletSpawner;
+    public BulletSpawner bulletSpawner;
     public EnemySpawner enemySpawner;
 
     protected override void OnTest1(InputAction.CallbackContext context)
