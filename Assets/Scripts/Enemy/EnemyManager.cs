@@ -22,5 +22,18 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-
+    public void IncreaseEnemyHealth(float amount)
+    {
+        if (characterHP != null)
+        {
+            characterHP.IncreaseHP(amount);
+        }
+    }
+    public void DecreaseEnemyHealth(float amount)
+    {
+        if (characterHP != null)
+        {
+            characterHP.DecreaseHP(amount);
+        }
+    }
 }

@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterHP: {fileID: 0}
-  invincibilityDuration: 2
+  invincibilityDuration: 0.3
 --- !u!114 &5383640192000049136
 MonoBehaviour:
   m_ObjectHideFlags: 0

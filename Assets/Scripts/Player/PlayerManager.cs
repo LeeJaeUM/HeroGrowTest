@@ -7,7 +7,7 @@ public class PlayerManager : MonoBehaviour
     CharacterHP characterHP;
 
     private bool isInvincible = false;  // 무적 상태를 나타내는 변수
-    public float invincibilityDuration = 2.0f;  // 무적 상태 지속 시간
+    public float invincibilityDuration = 0.3f;  // 무적 상태 지속 시간
 
 
     private void Start()
