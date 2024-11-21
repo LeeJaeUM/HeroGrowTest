@@ -48,4 +48,19 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
+    #region Item Acquire
+
+    public void AcquireItem_Coin()
+    {
+        Debug.Log("coin È¹µæ");
+    }
+    public void AcquireItem_Heart()
+    {
+        Debug.Log("heart È¹µæ");
+    }
+    public void AcquireItem_LootBox()
+    {
+        Debug.Log("lootBox È¹µæ");
+    }
+    #endregion
 }
