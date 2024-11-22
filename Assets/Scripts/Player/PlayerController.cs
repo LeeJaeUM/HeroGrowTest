@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        InputManager.Instance.OnMoveAction += PlayerMove;
+        AttachInputManager();
     }
 
     private void FixedUpdate()
@@ -27,5 +27,10 @@ public class PlayerController : MonoBehaviour
         inputVecView.x = inputVec.x;
         inputVecView.z = inputVec.y;
         moveVec = inputVecView * speed * Time.fixedDeltaTime;
+    }
+
+    void AttachInputManager()
+    {
+        InputManager.Instance.OnMoveAction += PlayerMove;
     }
 }

@@ -8,7 +8,7 @@ public class EnemyManager : MonoBehaviour
     CharacterHP characterHP;
     public GameObject dropCoin;
 
-    private void Start()
+    private void Awake()
     {
         characterHP = GetComponent<CharacterHP>();
     }
