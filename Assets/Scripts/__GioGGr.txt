@@ -1,6 +1,6 @@
-ÇöÀç Å¬·¡½º
+í˜„ìž¬ í´ëž˜ìŠ¤
 
-½Ì±ÛÅæ Å¬·¡½º
+ì‹±ê¸€í†¤ í´ëž˜ìŠ¤
 GameManager
 InputManager
 UIManager
@@ -12,30 +12,34 @@ CharacterCombatBase
 PlayerCombat
 EnemyCombat
 
-ÀÌ °ÔÀÓ¿¡¼­ ÇÃ·¹ÀÌ¾î°¡ Æ®¸®°Å·Î Ã³¸®ÇÒ °ÍÀº Eenmy, EnemyBullet, º¸¹°»óÀÚ(LootBox) ÀÌ ¼¼°³´Ù.
-ÀÌ Áß º¸¹°»óÀÚ´Â º¸¹°»óÀÚ°¡ ÇÃ·¹ÀÌ¾î¿¡ ´êÀ¸¸é »èÁ¦ ¹× UIÃ³¸®·Î ³Ñ±â¸é 
-ÇÃ·¹ÀÌ¾î°¡ Ã³¸®ÇÒ Æ®¸®°Å´Â ÈúÆÑ, ÄÚÀÎ, ¹öÇÁ¾ÆÀÌÅÛÀ» Á¦¿ÜÇÏ¸é 
-¿ÀÁ÷ ÇÃ·¹ÀÌ¾î¿¡ µ¥¹ÌÁö¸¦ ÁÖ´Â °Í ¹Û¿¡ ¾ø´Ù. 
+ì´ ê²Œìž„ì—ì„œ í”Œë ˆì´ì–´ê°€ íŠ¸ë¦¬ê±°ë¡œ ì²˜ë¦¬í•  ê²ƒì€ Eenmy, EnemyBullet, ë³´ë¬¼ìƒìž(LootBox) ì´ ì„¸ê°œë‹¤.
+ì´ ì¤‘ ë³´ë¬¼ìƒìžëŠ” ë³´ë¬¼ìƒìžê°€ í”Œë ˆì´ì–´ì— ë‹¿ìœ¼ë©´ ì‚­ì œ ë° UIì²˜ë¦¬ë¡œ ë„˜ê¸°ë©´ 
+í”Œë ˆì´ì–´ê°€ ì²˜ë¦¬í•  íŠ¸ë¦¬ê±°ëŠ” ížíŒ©, ì½”ì¸, ë²„í”„ì•„ì´í…œì„ ì œì™¸í•˜ë©´ 
+ì˜¤ì§ í”Œë ˆì´ì–´ì— ë°ë¯¸ì§€ë¥¼ ì£¼ëŠ” ê²ƒ ë°–ì— ì—†ë‹¤. 
 
-ÀÏ´Ü Á¶°Ç¹®À¸·Î °¢ÀÚ ´Ù¸£°Ô ÀÛ¼ºÇÔ
+ì¼ë‹¨ ì¡°ê±´ë¬¸ìœ¼ë¡œ ê°ìž ë‹¤ë¥´ê²Œ ìž‘ì„±í•¨
 
-°ø°ÝÀ» °ü¸®ÇÏ´Â Å¬·¡½º°¡ 
-°ø°ÝÀ» 
+ê³µê²©ì„ ê´€ë¦¬í•˜ëŠ” í´ëž˜ìŠ¤ê°€ 
+ê³µê²©ì„ 
 
 
-OntriggerEnter¾µ‹š other ¿¡¼­ Ã£À» ¶§
-TryGetComponent »ç¿ëÇÏÀÚ
+OntriggerEnterì“¸ë–„ other ì—ì„œ ì°¾ì„ ë•Œ
+TryGetComponent ì‚¬ìš©í•˜ìž
 
-onTriggerEnter¸¦ °¡Áö´Â ¾Ö´Â 
-°¢ PlayerManager EnemyManager 
-CombatÀ¸·Î Àû¾ú´ø ¾ÖµéÀº ±×·±½ÄÀ¸·Î ¾Õ¿¡
+onTriggerEnterë¥¼ ê°€ì§€ëŠ” ì• ëŠ” 
+ê° PlayerManager EnemyManager 
+Combatìœ¼ë¡œ ì ì—ˆë˜ ì• ë“¤ì€ ê·¸ëŸ°ì‹ìœ¼ë¡œ ì•žì—
 
 PlayerCombat
 EnemyCombat
-ÀÌ·¸°Ô »ç¿ëÀÚ¸¦ Á¤ÇØµÎ¸é ¾ÈµÈ´Ù.
+ì´ë ‡ê²Œ ì‚¬ìš©ìžë¥¼ ì •í•´ë‘ë©´ ì•ˆëœë‹¤.
 
-ÇÊ¿äÇÑ ±â´É¸¸ ´ã°í ÀÖ¾î¾ßÇÑ´Ù.
+í•„ìš”í•œ ê¸°ëŠ¥ë§Œ ë‹´ê³  ìžˆì–´ì•¼í•œë‹¤.
 
-±×·¯¸é µ¥¹ÌÁö´Â ÁÖ´Â ÂÊ¿¡¼­ ÆÇ´ÜÇÏ´Â°É·Î ÇÏ°í
-°¢ ¸Å´ÏÀú¸¦ ¸¸µé¾î¼­ ¸Å´ÏÀú°¡ OnTriggerEnter¸¦ °¡Áö°í
-Ãæµ¹ ½Ã »ó´ë°¡ ¸Å´ÏÀú¸¦ °¡Áö°í ÀÖ´Ù¸é Ã¼·Â°¨¼Ò ÇÔ¼ö¸¦ ½ÇÇà½ÃÅ°ÀÚ
+ê·¸ëŸ¬ë©´ ë°ë¯¸ì§€ëŠ” ì£¼ëŠ” ìª½ì—ì„œ íŒë‹¨í•˜ëŠ”ê±¸ë¡œ í•˜ê³ 
+ê° ë§¤ë‹ˆì €ë¥¼ ë§Œë“¤ì–´ì„œ ë§¤ë‹ˆì €ê°€ OnTriggerEnterë¥¼ ê°€ì§€ê³ 
+ì¶©ëŒ ì‹œ ìƒëŒ€ê°€ ë§¤ë‹ˆì €ë¥¼ ê°€ì§€ê³  ìžˆë‹¤ë©´ ì²´ë ¥ê°ì†Œ í•¨ìˆ˜ë¥¼ ì‹¤í–‰ì‹œí‚¤ìž
+
+
+êµ¬ì¡°ì²´ë¥¼ ë§Œë“¤ì–´ì„œ 
+ì•ˆì— isUsedê°€ falseë©´ ì•ˆ ì“°ê³  ìžˆë‹¤.

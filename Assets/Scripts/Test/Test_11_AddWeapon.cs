@@ -11,6 +11,6 @@ public class Test_11_AddWeapon : TestBase
     private List<Weapon> weaponEncyclopedia = new List<Weapon>();
     protected override void OnTest1(InputAction.CallbackContext context)
     {
-        weaponManager.AddWeapon(weaponEncyclopedia[index]);
+       // weaponManager.AddWeapon(weaponEncyclopedia[index]);
     }
 }
