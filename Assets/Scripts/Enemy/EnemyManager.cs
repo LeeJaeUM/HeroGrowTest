@@ -3,6 +3,7 @@ using UnityEngine;
 public class EnemyManager : MonoBehaviour
 {
     public float damageAmount = 10f;
+    public float dropItemHeight = 0.9f;
 
     [SerializeField]
     CharacterHP characterHP;
@@ -44,18 +45,18 @@ public class EnemyManager : MonoBehaviour
         if (characterHP != null)
         {
             characterHP.DecreaseHP(amount);
-
-            if(characterHP.isDead)
-            {
-                DeadEnemy();
-
-            }
         }
     }
 
     public void DeadEnemy()
     {
-        Instantiate(dropCoin);
+        // 적의 현재 위치를 얻어옴
+        Vector3 enemyPosition = new Vector3(transform.position.x, dropItemHeight, transform.position.z);
+
+        // 적의 위치에 코인을 생성
+        Instantiate(dropCoin, enemyPosition, Quaternion.identity);
+
+        // 적 오브젝트 파괴
         Destroy(gameObject);
     }
 }

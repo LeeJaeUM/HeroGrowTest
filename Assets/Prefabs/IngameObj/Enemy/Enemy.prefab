@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageAmount: 10
+  dropItemHeight: 0.9
   characterHP: {fileID: 0}
   dropCoin: {fileID: 3240375764217913581, guid: 953f6c1709d3c2d40b81e0605dd5d812, type: 3}
 --- !u!114 &8662700539817517519
@@ -205,4 +206,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDead: 0
   curHP: 0
-  maxHP: 100
+  maxHP: 10
