@@ -24,33 +24,8 @@ public class GameManager : Singleton<GameManager>
         {
             if (_currentState != value)
             {
-                ////»óÅÂ°¡ ¹Ù²î±â Àü¿¡ »óÅÂ¿¡ µû¶ó ½ÇÇà
-                //switch (_currentState)
-                //{
-                //    case GameState.MainMenu:
-                //        break;
-                //    case GameState.InGame:
-                //        break;
-                //    case GameState.Paused:
-                //        break;
-                //    case GameState.GameOver:
-                //        break;
-                //}
-                //_currentState = value;
-                ////»óÅÂ°¡ ¹Ù²ï µÚ »óÅÂ¿¡ µû¶ó ½ÇÇà
-                //switch (_currentState)
-                //{
-                //    case GameState.MainMenu:
-                //        break;
-                //    case GameState.InGame:
-                //        break;
-                //    case GameState.Paused:
-                //        break;
-                //    case GameState.GameOver:
-                //        break;
-                //}
                 _currentState = value;
-                OnGameStateChanged?.Invoke(_currentState);  // »óÅÂ°¡ º¯°æµÉ ¶§¸¶´Ù ÀÌº¥Æ® È£Ãâ
+                OnGameStateChanged?.Invoke(_currentState);  // ìƒíƒœê°€ ë³€ê²½ë  ë•Œë§ˆë‹¤ ì´ë²¤íŠ¸ í˜¸ì¶œ
             }
         }
 
@@ -63,85 +38,85 @@ public class GameManager : Singleton<GameManager>
 
     protected override void Awake()
     {
-        base.Awake();  // ½Ì±ÛÅæ ÃÊ±âÈ­
-        CurrentState = GameState.MainMenu;  // ÃÊ±â »óÅÂ´Â ¸ŞÀÎ ¸Ş´º
+        base.Awake();  // ì‹±ê¸€í†¤ ì´ˆê¸°í™”
+        CurrentState = GameState.MainMenu;  // ì´ˆê¸° ìƒíƒœëŠ” ë©”ì¸ ë©”ë‰´
     }
     private void Update()
     {
-        // °ÔÀÓÀÌ ÁøÇà ÁßÀÌ¶ó¸é ÇÃ·¹ÀÌ ½Ã°£À» ÃøÁ¤
+        // ê²Œì„ì´ ì§„í–‰ ì¤‘ì´ë¼ë©´ í”Œë ˆì´ ì‹œê°„ì„ ì¸¡ì •
         if (isGameActive && _currentState == GameState.InGame)
         {
             playTime += Time.deltaTime;
         }
     }
-    // °ÔÀÓ ½ÃÀÛ
+    // ê²Œì„ ì‹œì‘
     public void StartGame()
     {
         Debug.Log("Game Started");
         CurrentState = GameState.InGame;
 
-        // °ÔÀÓ ½Ã°£ ÃøÁ¤ ½ÃÀÛ
+        // ê²Œì„ ì‹œê°„ ì¸¡ì • ì‹œì‘
         isGameActive = true;
         playTimeCoroutine = StartCoroutine(TrackPlayTime());
-    }   // °ÔÀÓ Á¾·á
+    }   // ê²Œì„ ì¢…ë£Œ
     public void EndGame()
     {
         Debug.Log("Game Over");
         CurrentState = GameState.GameOver;
 
-        // °ÔÀÓÀÌ ³¡³­ ÈÄ Ã³¸® ·ÎÁ÷ (Á¡¼ö ÀúÀå µî)
+        // ê²Œì„ì´ ëë‚œ í›„ ì²˜ë¦¬ ë¡œì§ (ì ìˆ˜ ì €ì¥ ë“±)
         SaveGameData();
 
-        // °ÔÀÓ Á¾·á ÈÄ ¸ŞÀÎ ¸Ş´º·Î ÀÌµ¿
+        // ê²Œì„ ì¢…ë£Œ í›„ ë©”ì¸ ë©”ë‰´ë¡œ ì´ë™
     }
 
-    // °ÔÀÓ ÀÏ½ÃÁ¤Áö
+    // ê²Œì„ ì¼ì‹œì •ì§€
     public void PauseGame()
     {
         CurrentState = GameState.Paused;
-        isGameActive = false;  // °ÔÀÓÀ» ÀÏ½ÃÁ¤Áö »óÅÂ·Î ¸¸µê
-        Time.timeScale = 0;  // °ÔÀÓ ½Ã°£À» ¸ØÃã (¹°¸®Àû ½Ã°£µµ ¸ØÃã)
+        isGameActive = false;  // ê²Œì„ì„ ì¼ì‹œì •ì§€ ìƒíƒœë¡œ ë§Œë“¦
+        Time.timeScale = 0;  // ê²Œì„ ì‹œê°„ì„ ë©ˆì¶¤ (ë¬¼ë¦¬ì  ì‹œê°„ë„ ë©ˆì¶¤)
         Debug.Log("Game Paused");
     }
 
-    // °ÔÀÓ Àç°³
+    // ê²Œì„ ì¬ê°œ
     public void ResumeGame()
     {
         if (_currentState == GameState.Paused)
         {
             CurrentState = GameState.InGame;
             isGameActive = true;
-            Time.timeScale = 1;  // °ÔÀÓ ½Ã°£ ´Ù½Ã Èå¸£°Ô ÇÔ
+            Time.timeScale = 1;  // ê²Œì„ ì‹œê°„ ë‹¤ì‹œ íë¥´ê²Œ í•¨
             Debug.Log("Game Resumed");
         }
     }
 
-    // ¾À ·Îµå Ã³¸®
+    // ì”¬ ë¡œë“œ ì²˜ë¦¬
     //private void LoadScene(string sceneName)
     //{
     //    SceneManager.LoadScene(sceneName);
     //}
 
-    // °ÔÀÓ µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â ¸Ş¼­µå (¿¹½Ã)
+    // ê²Œì„ ë°ì´í„°ë¥¼ ì €ì¥í•˜ëŠ” ë©”ì„œë“œ (ì˜ˆì‹œ)
     private void SaveGameData()
     {
-        // ¿¹¸¦ µé¾î, °ÔÀÓÀÇ Á¡¼ö³ª ÁøÇà »óÈ²À» ÀúÀå
+        // ì˜ˆë¥¼ ë“¤ì–´, ê²Œì„ì˜ ì ìˆ˜ë‚˜ ì§„í–‰ ìƒí™©ì„ ì €ì¥
         PlayerPrefs.SetFloat("LastPlayTime", playTime);
         Debug.Log($"Game data saved: Play time - {playTime} seconds");
     }
 
-    // ÇÃ·¹ÀÌ ½Ã°£ ÃßÀû ÄÚ·çÆ¾
+    // í”Œë ˆì´ ì‹œê°„ ì¶”ì  ì½”ë£¨í‹´
     private IEnumerator TrackPlayTime()
     {
         while (_currentState == GameState.InGame)
         {
-            // ÇÃ·¹ÀÌ ½Ã°£ ¾÷µ¥ÀÌÆ® (1ÃÊ¸¶´Ù)
+            // í”Œë ˆì´ ì‹œê°„ ì—…ë°ì´íŠ¸ (1ì´ˆë§ˆë‹¤)
             yield return new WaitForSeconds(1);
             Debug.Log($"Play time: {playTime} seconds");
         }
     }
 
-    // °ÔÀÓ »óÅÂ Ãâ·Â (µğ¹ö±×¿ë)
+    // ê²Œì„ ìƒíƒœ ì¶œë ¥ (ë””ë²„ê·¸ìš©)
     public void PrintGameState()
     {
         Debug.Log($"Current Game State: {_currentState}");

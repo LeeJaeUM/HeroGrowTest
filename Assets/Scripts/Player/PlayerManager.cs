@@ -6,13 +6,18 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     CharacterHP characterHP;
 
-    private bool isInvincible = false;  // ¹«Àû »óÅÂ¸¦ ³ªÅ¸³»´Â º¯¼ö
-    public float invincibilityDuration = 0.3f;  // ¹«Àû »óÅÂ Áö¼Ó ½Ã°£
+    private bool isInvincible = false;  // ë¬´ì  ìƒíƒœë¥¼ ë‚˜íƒ€ë‚´ëŠ” ë³€ìˆ˜
+    public float invincibilityDuration = 0.3f;  // ë¬´ì  ìƒíƒœ ì§€ì† ì‹œê°„
 
 
-    private void Start()
+    private void Awake()
     {
         characterHP = GetComponent<CharacterHP>();
+    }
+
+    private void OnEnable()
+    {
+        characterHP.onDead += Gameover;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -33,34 +38,31 @@ public class PlayerManager : MonoBehaviour
         if (!isInvincible && characterHP != null)
         {
             characterHP.DecreaseHP(amount);
-            StartCoroutine(BecomeInvincible());  // ÇÇ°İ ÈÄ ¹«Àû »óÅÂ·Î ÀüÈ¯
+            StartCoroutine(BecomeInvincible());  // í”¼ê²© í›„ ë¬´ì  ìƒíƒœë¡œ ì „í™˜
         }
     }
 
-    //ÇÃ·¹ÀÌ¾î ¹«Àû »óÅÂ Ãß°¡
+    //í”Œë ˆì´ì–´ ë¬´ì  ìƒíƒœ ì¶”ê°€
     private IEnumerator BecomeInvincible()
     {
         isInvincible = true;
-        Debug.Log("¹«Àû ½ÃÀÛ : Player is invincible!");
-        yield return new WaitForSeconds(invincibilityDuration);  // ¹«Àû »óÅÂ Áö¼Ó ½Ã°£ µ¿¾È ´ë±â
+        Debug.Log("ë¬´ì  ì‹œì‘ : Player is invincible!");
+        yield return new WaitForSeconds(invincibilityDuration);  // ë¬´ì  ìƒíƒœ ì§€ì† ì‹œê°„ ë™ì•ˆ ëŒ€ê¸°
         isInvincible = false;
-        Debug.Log("¹«Àû Á¾·á : Player is no longer invincible.");
+        Debug.Log("ë¬´ì  ì¢…ë£Œ : Player is no longer invincible.");
     }
     #endregion
 
-    #region Item Acquire
+    //ì•„ì´í…œ íšë“ ì‹œ ì¡°ê±´ì²˜ë¦¬ë¥¼ ìœ„í•´ ë³„ë„ì˜ í•¨ìˆ˜ë¡œ ë‚¨ê²¨ë‘ 
+    public void AcquireItem_Heart(int amount)
+    {
+        Debug.Log("heart íšë“");
+        IncreasePlayerHealth(amount);
+    }
 
-    public void AcquireItem_Coin()
+    public void Gameover()
     {
-        Debug.Log("coin È¹µæ");
+        Debug.Log($"PlayerManagerì—ì„œ í”Œë ˆì´ì–´ ì‚¬ë§ í•¨ìˆ˜ ì‹¤í–‰");
     }
-    public void AcquireItem_Heart()
-    {
-        Debug.Log("heart È¹µæ");
-    }
-    public void AcquireItem_LootBox()
-    {
-        Debug.Log("lootBox È¹µæ");
-    }
-    #endregion
+
 }

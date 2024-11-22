@@ -22,6 +22,6 @@ public class Test_07_BulletSpawn : TestBase
 
     protected override void OnTest4(InputAction.CallbackContext context)
     {
-        enemySpawner.SpawnEnclosingCircle_RandomMinus();
+        enemySpawner.SpawnEnclosingCircle_RandomRemove();
     }
 }

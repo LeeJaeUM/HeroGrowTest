@@ -9,7 +9,7 @@ public class EnemyManager : MonoBehaviour
     CharacterHP characterHP;
     public GameObject dropCoin;
 
-    private void Awake()
+    private void Start()
     {
         characterHP = GetComponent<CharacterHP>();
     }
@@ -50,13 +50,13 @@ public class EnemyManager : MonoBehaviour
 
     public void DeadEnemy()
     {
-        // ÀûÀÇ ÇöÀç À§Ä¡¸¦ ¾ò¾î¿È
+        // ì ì˜ í˜„ì¬ ìœ„ì¹˜ë¥¼ ì–»ì–´ì˜´
         Vector3 enemyPosition = new Vector3(transform.position.x, dropItemHeight, transform.position.z);
 
-        // ÀûÀÇ À§Ä¡¿¡ ÄÚÀÎÀ» »ı¼º
+        // ì ì˜ ìœ„ì¹˜ì— ì½”ì¸ì„ ìƒì„±
         Instantiate(dropCoin, enemyPosition, Quaternion.identity);
 
-        // Àû ¿ÀºêÁ§Æ® ÆÄ±«
+        // ì  ì˜¤ë¸Œì íŠ¸ íŒŒê´´
         Destroy(gameObject);
     }
 }

@@ -6,18 +6,18 @@ public class CharacterHP : MonoBehaviour
     public bool isDead = false;
     public event Action onDead;
 
-    // Ã¼·Â °ü·Ã º¯¼ö
+    // ì²´ë ¥ ê´€ë ¨ ë³€ìˆ˜
     [SerializeField]
-    protected float curHP;
+    private float curHP;
     [SerializeField]
-    protected float maxHP = 100f;
-    public float MaxHP { get => maxHP; protected set { maxHP = value; } }  // ÃÖ´ë Ã¼·Â (±âº»°ª 100)
+    private float maxHP = 100f;
+    public float MaxHP { get => maxHP; private set { maxHP = value; } }  // ìµœëŒ€ ì²´ë ¥ (ê¸°ë³¸ê°’ 100)
 
-    // Ã¼·Â ÇÁ·ÎÆÛÆ¼: ÀĞ±â °¡´É, ¾²±â Á¦ÇÑ (ÃÖ¼Ò 0, ÃÖ´ë MaxHealth)
+    // ì²´ë ¥ í”„ë¡œí¼í‹°: ì½ê¸° ê°€ëŠ¥, ì“°ê¸° ì œí•œ (ìµœì†Œ 0, ìµœëŒ€ MaxHealth)
     public float CurHP
     {
         get => curHP;
-        protected set
+        private set
         {
             //if(curHealth == value) return;
             curHP = Mathf.Clamp(value, 0, MaxHP);
@@ -27,29 +27,29 @@ public class CharacterHP : MonoBehaviour
         }
     }
 
-    // ÃÊ±âÈ­
-    protected virtual void Start()
+    // ì´ˆê¸°í™”
+    private void Start()
     {
-        CurHP = MaxHP; // ½ÃÀÛ ½Ã Ã¼·ÂÀ» ÃÖ´ëÄ¡·Î ¼³Á¤
+        CurHP = MaxHP; // ì‹œì‘ ì‹œ ì²´ë ¥ì„ ìµœëŒ€ì¹˜ë¡œ ì„¤ì •
     }
 
-    // Ã¼·Â È¸º¹ ÇÔ¼ö
+    // ì²´ë ¥ íšŒë³µ í•¨ìˆ˜
     public void IncreaseHP(float amount)
     {
-        Debug.Log($"{gameObject.name}ÀÌ {amount} Ã¼·ÂÀ» È¸º¹ÇÔ. ÇöÀç Ã¼·Â: {CurHP}");
-        CurHP += amount; // È¸º¹·®À» ´õÇÏ¸é Health ÇÁ·ÎÆÛÆ¼°¡ ÀÚµ¿À¸·Î ÃÖ´ë°ª Ã³¸®
+        Debug.Log($"{gameObject.name}ì´ {amount} ì²´ë ¥ì„ íšŒë³µí•¨. í˜„ì¬ ì²´ë ¥: {CurHP}");
+        CurHP += amount; // íšŒë³µëŸ‰ì„ ë”í•˜ë©´ Health í”„ë¡œí¼í‹°ê°€ ìë™ìœ¼ë¡œ ìµœëŒ€ê°’ ì²˜ë¦¬
     }
 
-    // Ã¼·Â °¨¼Ò ÇÔ¼ö
+    // ì²´ë ¥ ê°ì†Œ í•¨ìˆ˜
     public void DecreaseHP(float amount)
     {
-        Debug.Log($"{gameObject.name}ÀÌ {amount} Ã¼·ÂÀ» °¨¼ÒÇÔ. ÇöÀç Ã¼·Â: {CurHP}");
+        Debug.Log($"{gameObject.name}ì´ {amount} ì²´ë ¥ì„ ê°ì†Œí•¨. í˜„ì¬ ì²´ë ¥: {CurHP}");
         CurHP -= amount; 
     }
     
-    protected virtual void Die()
+    private void Die()
     {
-        Debug.Log($"!! {gameObject.name}ÀÌ »ç¸ÁÇß½À´Ï´Ù ³²Àº Ã¼·Â: {CurHP} !!");
+        Debug.Log($"!! {gameObject.name}ì´ ì‚¬ë§í–ˆìŠµë‹ˆë‹¤ ë‚¨ì€ ì²´ë ¥: {CurHP} !!");
         isDead = true;
         onDead?.Invoke();
     }

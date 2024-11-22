@@ -2,6 +2,7 @@ using UnityEngine;
 
 public enum ItemType
 {
+    None,
     Coin,
     Heart,
     LootBox
@@ -9,26 +10,48 @@ public enum ItemType
 
 public class Item : MonoBehaviour
 {
-    public ItemType Type;
+    public ItemType itemType;
 
+    public int amount = 1;
+
+    ItemManager itemManager;
+
+    private void Start()
+    {
+        switch (itemType)
+        {
+            case ItemType.Coin:
+                amount = 50;
+                break;
+            case ItemType.Heart:
+                amount = 20;
+                break;
+            case ItemType.LootBox:
+                amount = 1;
+                break;
+            default:
+                Debug.Log("ì•„ì´í…œì˜ íƒ€ì…ì´ ì„¤ì •ë˜ì§€ ì•ŠìŒ");
+                break;
+        }
+
+        itemManager = ItemManager.Instance;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<PlayerManager>(out PlayerManager playerManager))
         {
-            switch (Type)
+            switch (itemType)
             {
                 case ItemType.Coin:
-                    playerManager.AcquireItem_Coin();
+                case ItemType.LootBox:
+                    itemManager.AcquireItem(itemType, amount);
                     break;
                 case ItemType.Heart:
-                    playerManager.AcquireItem_Heart();
-                    break;
-                case ItemType.LootBox:
-                    playerManager.AcquireItem_LootBox();
+                    playerManager.AcquireItem_Heart(amount);
                     break;
                 default:
-                    Debug.Log("¾ÆÀÌÅÛÀÇ Å¸ÀÔÀÌ ¼³Á¤µÇÁö ¾ÊÀ½");
+                    Debug.Log("ì•„ì´í…œì˜ íƒ€ì…ì´ ì„¤ì •ë˜ì§€ ì•ŠìŒ");
                     break;
             }
             Destroy(gameObject);

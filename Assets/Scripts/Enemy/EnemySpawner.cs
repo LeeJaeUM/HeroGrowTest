@@ -3,31 +3,31 @@ using UnityEngine;
 public class EnemySpawner : ObjectSpawner
 {
     [Header("Spawn EnclosingCircle")]
-    public float radius = 5f;   // ¹İÁö¸§ (5 ´ÜÀ§·Î ¼³Á¤)
-    public int addAngle = 10;   // ¿øÇü »ı¼º ½Ã ÇÏ³ª´ç »ı¼ºÇÒ °¢µµ
+    public float radius = 5f;   // ë°˜ì§€ë¦„ (5 ë‹¨ìœ„ë¡œ ì„¤ì •)
+    public int addAngle = 10;   // ì›í˜• ìƒì„± ì‹œ í•˜ë‚˜ë‹¹ ìƒì„±í•  ê°ë„
 
     [Header("skip Instantiate")]
-    public int skipAngle = 0;   // ¿øÇü »ı¼º ½Ã ºñ¿ö µÑ °¢µµ
-    public int skipCount = 3;   // ¿øÇü »ı¼º ½Ã ÀÌ¾î¼­ ºñ¿ï °¹¼ö
+    public int skipAngle = 0;   // ì›í˜• ìƒì„± ì‹œ ë¹„ì›Œ ë‘˜ ê°ë„
+    public int skipCount = 3;   // ì›í˜• ìƒì„± ì‹œ ì´ì–´ì„œ ë¹„ìš¸ ê°¯ìˆ˜
 
     public override void SpawnObject()
     {
         if (target != null)
         {
-            // 0¿¡¼­ 360µµ »çÀÌÀÇ ·£´ı °¢µµ »ı¼º
+            // 0ì—ì„œ 360ë„ ì‚¬ì´ì˜ ëœë¤ ê°ë„ ìƒì„±
             float randomAngle = Random.Range(0f, 360f);
 
-            // ·£´ı °¢µµ¸¦ ¶óµğ¾ÈÀ¸·Î º¯È¯
+            // ëœë¤ ê°ë„ë¥¼ ë¼ë””ì•ˆìœ¼ë¡œ ë³€í™˜
             float radians = randomAngle * Mathf.Deg2Rad;
 
-            // ¿øÀÇ µÑ·¹¿¡¼­ ·£´ı À§Ä¡ °è»ê
+            // ì›ì˜ ë‘˜ë ˆì—ì„œ ëœë¤ ìœ„ì¹˜ ê³„ì‚°
             float x = target.position.x + Mathf.Cos(radians) * radius;
             float z = target.position.z + Mathf.Sin(radians) * radius;
 
-            // YÃàÀº ÇÃ·¹ÀÌ¾î¿Í µ¿ÀÏÇÏ°Ô ¼³Á¤
+            // Yì¶•ì€ í”Œë ˆì´ì–´ì™€ ë™ì¼í•˜ê²Œ ì„¤ì •
             Vector3 spawnPosition = new Vector3(x, target.position.y, z);
 
-            // ¿ÀºêÁ§Æ® »ı¼º
+            // ì˜¤ë¸Œì íŠ¸ ìƒì„±
             Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
         }
         else
@@ -41,62 +41,62 @@ public class EnemySpawner : ObjectSpawner
         {
             for (int i = 0; i < 360; i += addAngle)
             {
-                // ·£´ı °¢µµ¸¦ ¶óµğ¾ÈÀ¸·Î º¯È¯
+                // ëœë¤ ê°ë„ë¥¼ ë¼ë””ì•ˆìœ¼ë¡œ ë³€í™˜
                 float radians = i * Mathf.Deg2Rad;
 
-                // ¿øÀÇ µÑ·¹¿¡¼­ À§Ä¡ °è»ê
+                // ì›ì˜ ë‘˜ë ˆì—ì„œ ìœ„ì¹˜ ê³„ì‚°
                 float x = target.position.x + Mathf.Cos(radians) * radius;
                 float z = target.position.z + Mathf.Sin(radians) * radius;
 
-                // YÃàÀº ÇÃ·¹ÀÌ¾î¿Í µ¿ÀÏÇÏ°Ô ¼³Á¤
+                // Yì¶•ì€ í”Œë ˆì´ì–´ì™€ ë™ì¼í•˜ê²Œ ì„¤ì •
                 Vector3 spawnPosition = new Vector3(x, target.position.y, z);
 
-                // ¿ÀºêÁ§Æ® »ı¼º
+                // ì˜¤ë¸Œì íŠ¸ ìƒì„±
                 Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
             }
         }
     }
-    public void SpawnEnclosingCircle_RandomMinus()
+    public void SpawnEnclosingCircle_RandomRemove()
     {
         if (target != null)
         {
-            // °Ç³Ê¶Û ¹İº¹ È½¼ö¸¦ ·£´ıÀ¸·Î °áÁ¤ 
+            // ê±´ë„ˆë›¸ ë°˜ë³µ íšŸìˆ˜ë¥¼ ëœë¤ìœ¼ë¡œ ê²°ì • 
             int excludeCount = Random.Range(1, 360 / addAngle);
 
             skipAngle = excludeCount * addAngle;
 
             for (int i = 0; i < 360; i += addAngle)
             {
-                // °Ç³Ê¶Û È½¼ö¸¦ ÃßÀûÇÏ´Â º¯¼ö
+                // ê±´ë„ˆë›¸ íšŸìˆ˜ë¥¼ ì¶”ì í•˜ëŠ” ë³€ìˆ˜
                 if (i >= skipAngle && i < skipAngle + addAngle * skipCount) continue;
 
-                // ·£´ı °¢µµ¸¦ ¶óµğ¾ÈÀ¸·Î º¯È¯
+                // ëœë¤ ê°ë„ë¥¼ ë¼ë””ì•ˆìœ¼ë¡œ ë³€í™˜
                 float radians = i * Mathf.Deg2Rad;
 
-                // ¿øÀÇ µÑ·¹¿¡¼­ À§Ä¡ °è»ê
+                // ì›ì˜ ë‘˜ë ˆì—ì„œ ìœ„ì¹˜ ê³„ì‚°
                 float x = target.position.x + Mathf.Cos(radians) * radius;
                 float z = target.position.z + Mathf.Sin(radians) * radius;
 
-                // YÃàÀº ÇÃ·¹ÀÌ¾î¿Í µ¿ÀÏÇÏ°Ô ¼³Á¤
+                // Yì¶•ì€ í”Œë ˆì´ì–´ì™€ ë™ì¼í•˜ê²Œ ì„¤ì •
                 Vector3 spawnPosition = new Vector3(x, target.position.y, z);
 
-                // ¿ÀºêÁ§Æ® »ı¼º
+                // ì˜¤ë¸Œì íŠ¸ ìƒì„±
                 Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
             }
         }
     }
 
     /*
-     *  ¿øÇü ¹üÀ§ ³»¿¡ ÀüºÎ ·£´ıÀ¸·Î À§Ä¡¸¦ °í¸¥´Ù
-     *  Áï º¸½º ÆĞÅÏ¿¡ ¾²±â ÁÁ´Ù
+     *  ì›í˜• ë²”ìœ„ ë‚´ì— ì „ë¶€ ëœë¤ìœ¼ë¡œ ìœ„ì¹˜ë¥¼ ê³ ë¥¸ë‹¤
+     *  ì¦‰ ë³´ìŠ¤ íŒ¨í„´ì— ì“°ê¸° ì¢‹ë‹¤
              if (target != null)
         {
-            // ÇÃ·¹ÀÌ¾î¸¦ ±âÁØÀ¸·Î ¹İÁö¸§ 5ÀÎ ¿øÀÇ µÑ·¹¿¡¼­ ·£´ı À§Ä¡ °è»ê
-            Vector3 randomDirection = Random.insideUnitCircle * radius; // ¿øÀÇ µÑ·¹¿¡¼­ ·£´ıÇÑ Á¡
+            // í”Œë ˆì´ì–´ë¥¼ ê¸°ì¤€ìœ¼ë¡œ ë°˜ì§€ë¦„ 5ì¸ ì›ì˜ ë‘˜ë ˆì—ì„œ ëœë¤ ìœ„ì¹˜ ê³„ì‚°
+            Vector3 randomDirection = Random.insideUnitCircle * radius; // ì›ì˜ ë‘˜ë ˆì—ì„œ ëœë¤í•œ ì 
             TestVec3 = randomDirection;
             Vector3 spawnPosition = new Vector3(target.position.x + randomDirection.x, target.position.y, target.position.z + randomDirection.y);
 
-            // ¿ÀºêÁ§Æ® »ı¼º
+            // ì˜¤ë¸Œì íŠ¸ ìƒì„±
             Instantiate(objectPrefab, spawnPosition, Quaternion.identity);
         }
         else

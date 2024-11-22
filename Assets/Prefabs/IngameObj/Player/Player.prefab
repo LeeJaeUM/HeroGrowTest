@@ -167,7 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputVecView: {x: 0, y: 0, z: 0}
   moveVec: {x: 0, y: 0, z: 0}
-  speed: 4
+  speed: 10
 --- !u!114 &903270857476920877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,4 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81e4daf98c6b78448b886378ee1cb9d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDead: 0
   curHP: 0
+  maxHP: 100
