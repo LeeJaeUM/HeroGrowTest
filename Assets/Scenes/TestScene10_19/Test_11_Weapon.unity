@@ -654,7 +654,7 @@ Transform:
   m_GameObject: {fileID: 1710913246}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.345765, y: -0.9438011, z: 5.452523}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -673,21 +673,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allWeapons:
-  - weaponPrefab: {fileID: 0}
-    level: 1
-  - weaponPrefab: {fileID: 0}
-    level: 1
-  - weaponPrefab: {fileID: 0}
-    level: 1
-  - weaponPrefab: {fileID: 0}
-    level: 1
-  - weaponPrefab: {fileID: 0}
-    level: 1
-  - weaponPrefab: {fileID: 0}
-    level: 1
-  - weaponPrefab: {fileID: 0}
-    level: 1
-  equippedWeapons: []
+  - {fileID: 2214208267774040837, guid: 8891e54646fcf934db1e23b4ee2f945f, type: 3}
+  - {fileID: 717108025088656840, guid: d8b4fe9269244e04690ab2fc4f39dfe1, type: 3}
+  - {fileID: 1931611651200862983, guid: 05c16e369d11d8847b828d532aa864aa, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  equippedWeapons:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  weaponEquipped: 
+  equippedWeaponsLevel: 000000000000000000000000000000000000000000000000
 --- !u!1 &2144308687
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,7 +852,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3188177648298715671, guid: 53019a151c253654b9a8d9713c7e0fa5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -6.73
       objectReference: {fileID: 0}
     - target: {fileID: 3188177648298715671, guid: 53019a151c253654b9a8d9713c7e0fa5, type: 3}
       propertyPath: m_LocalPosition.y

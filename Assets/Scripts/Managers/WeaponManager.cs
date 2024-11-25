@@ -1,44 +1,48 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
-    public WeaponData[] allWeapons; // 모든 무기 데이터
-    public WeaponData[] equippedWeapons = new WeaponData[6]; // 장착된 무기
+    public GameObject[] allWeapons; // 모든 무기 데이터
+    public GameObject[] equippedWeapons = new GameObject[6]; // 장착된 무기
     [SerializeField]
     private bool[] weaponEquipped; // 무기 장착 여부 (allWeapons 크기와 동일)
+    public int[] equippedWeaponsLevel = new int[6];
+
+    public event Action<int> OnWeaponLevelUp;
 
     private void Awake()
     {
         weaponEquipped = new bool[allWeapons.Length];
     }
 
-    public bool AddWeapon(int weaponIndex)
+    public bool AddWeapon(int weaponID)
     {
-        if (weaponIndex < 0 || weaponIndex >= allWeapons.Length)
+        if (weaponID < 0 || weaponID >= allWeapons.Length)
         {
             Debug.LogWarning("Invalid weapon index.");
             return false;
         }
 
-        if (weaponEquipped[weaponIndex])
+        if (weaponEquipped[weaponID])
         {
-            LevelUpWeapon(weaponIndex);
+            LevelUpWeapon(weaponID);
             return false;
         }
 
         // 빈 슬롯에 무기 추가
         for (int i = 0; i < equippedWeapons.Length; i++)
         {
-            if (equippedWeapons[i].weaponPrefab == null)
+            if (equippedWeapons[i] == null)
             {
-                equippedWeapons[i].weaponPrefab = allWeapons[weaponIndex].weaponPrefab;
-                weaponEquipped[weaponIndex] = true;     
+                equippedWeapons[i] = allWeapons[weaponID];
+                weaponEquipped[weaponID] = true;     
 
-                GameObject weaponInstance = Instantiate(equippedWeapons[i].weaponPrefab);
+                GameObject weaponInstance = Instantiate(equippedWeapons[i]);
                 weaponInstance.transform.SetParent(transform);
 
-                Debug.Log($"Weapon {weaponIndex} added at level {allWeapons[weaponIndex].level}.");
+                Debug.Log($"Weapon {weaponID} added.");
                 return true;
             }
         }
@@ -47,10 +51,11 @@ public class WeaponManager : MonoBehaviour
         return false;
     }
 
-    private void LevelUpWeapon(int weaponIndex)
+    private void LevelUpWeapon(int weaponID)
     {
-        allWeapons[weaponIndex].level++;
-        Debug.Log($"Weapon {weaponIndex} leveled up to level {allWeapons[weaponIndex].level}.");
+        equippedWeaponsLevel[weaponID]++;
+        OnWeaponLevelUp?.Invoke(weaponID);
+        Debug.Log($"Weapon {weaponID} leveled up to level {equippedWeaponsLevel[weaponID]}.");
     }
 
 
