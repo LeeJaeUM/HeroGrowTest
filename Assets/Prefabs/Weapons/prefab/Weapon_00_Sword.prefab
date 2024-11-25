@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4324828705822036788}
   - component: {fileID: 688354662438767468}
   - component: {fileID: 402667092820823722}
-  - component: {fileID: -4535931229367812027}
-  m_Layer: 0
+  - component: {fileID: 6418504376273515040}
+  m_Layer: 9
   m_Name: Weapon_00_Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 2214208267774040837}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -10.16, y: 1.04, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -73,7 +73,7 @@ MonoBehaviour:
   currentLevel: 1
   maxLevel: 5
   damage: 5
---- !u!114 &-4535931229367812027
+--- !u!114 &6418504376273515040
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -82,9 +82,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2214208267774040837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5079644be7aaaaa4d95d279e9b7d5ddb, type: 3}
+  m_Script: {fileID: 11500000, guid: 438bf5f8248a1174ba1f6da1cb44e3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  orbitRadius: 2
+  orbitSpeed: 5
 --- !u!1 &6785751326067743394
 GameObject:
   m_ObjectHideFlags: 0
@@ -96,7 +98,7 @@ GameObject:
   - component: {fileID: 588149796095565902}
   - component: {fileID: 1653642010819956883}
   - component: {fileID: 307202317887490807}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,7 +115,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.71, y: 0.51, z: 1}
+  m_LocalScale: {x: 0.4, y: 0.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4324828705822036788}

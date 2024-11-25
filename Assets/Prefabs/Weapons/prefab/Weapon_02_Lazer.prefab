@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7574812923602492646}
   - component: {fileID: 7372042306521670614}
   - component: {fileID: 4509749074337014976}
-  m_Layer: 0
+  - component: {fileID: 1232223234985854334}
+  m_Layer: 9
   m_Name: Weapon_02_Lazer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,9 +72,19 @@ MonoBehaviour:
   weaponID: 2
   currentLevel: 1
   maxLevel: 5
-  prefab: {fileID: 0}
   damage: 5
-  weaponManager: {fileID: 0}
+--- !u!114 &1232223234985854334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1931611651200862983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c475dad81ae2d4b832d4127a6d6d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6147116237488991621
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,7 +96,7 @@ GameObject:
   - component: {fileID: 2325255324627242536}
   - component: {fileID: 5088804522916835475}
   - component: {fileID: 8693037802762830240}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}

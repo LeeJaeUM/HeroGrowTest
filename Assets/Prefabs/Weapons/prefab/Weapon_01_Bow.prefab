@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 4263605133030273360}
   - component: {fileID: 5392945538070629029}
   - component: {fileID: 2837154978197611085}
-  m_Layer: 0
+  - component: {fileID: -4140213534266901913}
+  m_Layer: 9
   m_Name: Weapon_01_Bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +75,20 @@ MonoBehaviour:
     m_Bits: 128
   fireRate: 1
   isFiring: 0
+  spreadAngle: 10
   weaponData: {fileID: 5392945538070629029}
+--- !u!114 &-4140213534266901913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 717108025088656840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35c475dad81ae2d4b832d4127a6d6d4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2621005746797989768
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +100,7 @@ GameObject:
   - component: {fileID: 814051855935930621}
   - component: {fileID: 5494160121655193861}
   - component: {fileID: 2145634032965382501}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: body (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +116,7 @@ Transform:
   m_GameObject: {fileID: 2621005746797989768}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.98423636, z: -0, w: 0.17685834}
-  m_LocalPosition: {x: -0.398, y: 0, z: -0.268}
+  m_LocalPosition: {x: 0.33, y: 0, z: 0.25}
   m_LocalScale: {x: 1.44, y: 0.53, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -170,7 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7829828061694084529}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ArrowSapwner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +215,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2873516562936176235}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +251,7 @@ GameObject:
   - component: {fileID: 4060367517056456111}
   - component: {fileID: 6263795868240083284}
   - component: {fileID: 5385179567016326813}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: body (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,7 +267,7 @@ Transform:
   m_GameObject: {fileID: 5831635661766538037}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.21325581, z: -0, w: 0.9769964}
-  m_LocalPosition: {x: 0.504, y: 0, z: -0.268}
+  m_LocalPosition: {x: -0.42, y: 0, z: 0.2}
   m_LocalScale: {x: 1.49, y: 0.53, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -323,7 +337,7 @@ GameObject:
   - component: {fileID: 3329165140902612254}
   - component: {fileID: 741016070384859557}
   - component: {fileID: 1347821270430906104}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

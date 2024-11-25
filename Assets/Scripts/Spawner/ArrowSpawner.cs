@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ArrowSpawner : BulletSpawner
 {
+    public float spreadAngle = 10f; // 화살의 퍼짐 각도
     [SerializeField]
     WeaponData weaponData;
 
@@ -15,7 +16,6 @@ public class ArrowSpawner : BulletSpawner
         if (objectPrefab != null)
         {
             int arrowCount = Mathf.Clamp(weaponData.CurrentLevel, 1, weaponData.maxLevel); // 레벨에 따라 발사 개수 결정
-            float spreadAngle = 15f; // 화살의 퍼짐 각도
 
             for (int i = 0; i < arrowCount; i++)
             {

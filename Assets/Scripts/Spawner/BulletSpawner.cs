@@ -30,9 +30,14 @@ public class BulletSpawner : ObjectSpawner
             bulletSpawnPoint = gameObject.transform.GetChild(0).transform;
         else
             bulletSpawnPoint = gameObject.transform;
+
+        if (!isHostile)
+        {
+            target = FindEnemy();
+        }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         if (!isHostile)
         {

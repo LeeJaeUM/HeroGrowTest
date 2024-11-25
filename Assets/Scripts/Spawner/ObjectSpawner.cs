@@ -7,7 +7,7 @@ public class ObjectSpawner : MonoBehaviour
 
     protected virtual void Start()
     {
-        FindTarget();
+        FindPlayer();
     }
 
     // 총알을 생성하는 함수
@@ -23,7 +23,7 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
-    public void FindTarget()
+    public void FindPlayer()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -34,6 +34,5 @@ public class ObjectSpawner : MonoBehaviour
         {
             Debug.LogWarning("Player 태그를 가진 오브젝트를 찾을 수 없습니다!");
         }
-
     }
 }

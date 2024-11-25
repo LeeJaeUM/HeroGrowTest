@@ -1,20 +1,27 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class WeaponAttackLogic : MonoBehaviour
 {
-    private WeaponData weaponData;
+    protected Transform player;
+    protected WeaponData weaponData;
 
     private void Start()
     {
+        FindPlayer();
         weaponData = GetComponent<WeaponData>();
     }
-
-    void OnTriggerEnter(Collider other)
+  
+    protected void FindPlayer()
     {
-        if (other.TryGetComponent<EnemyManager>(out EnemyManager enemy))
+        GameObject _player = GameObject.FindGameObjectWithTag("Player");
+        if (_player != null)
         {
-            enemy.DecreaseEnemyHealth(weaponData.damage);
-            Debug.Log("Enemy hit! Health reduced by " + weaponData.damage);
+            player = _player.transform;
+        }
+        else
+        {
+            Debug.LogWarning("Player 태그를 가진 오브젝트를 찾을 수 없습니다!");
         }
     }
 }
