@@ -1,7 +1,7 @@
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class WeaponAttackLogic : MonoBehaviour
+public class WeaponMovement : MonoBehaviour
 {
     protected Transform player;
     protected WeaponData weaponData;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RangedAttackLogic : WeaponAttackLogic
+public class RangedWeaponMovement : WeaponMovement
 {
     private void Update()
     {

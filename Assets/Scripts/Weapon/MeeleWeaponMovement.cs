@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MeeleAttackLogic : WeaponAttackLogic
+public class MeeleWeaponMovement : WeaponMovement
 {
     public float orbitRadius = 2f;
     public float orbitSpeed = 5f;
