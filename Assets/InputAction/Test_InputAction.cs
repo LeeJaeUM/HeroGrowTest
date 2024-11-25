@@ -73,13 +73,49 @@ public partial class @Test_InputAction: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Move"",
-                    ""type"": ""Value"",
-                    ""id"": ""daf579fb-356f-4af1-9665-a5dcc926fc72"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""name"": ""Test6"",
+                    ""type"": ""Button"",
+                    ""id"": ""10d3929f-4f17-48c0-8ad0-9b141ecad782"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": true
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Test7"",
+                    ""type"": ""Button"",
+                    ""id"": ""93d00536-756d-48a7-b6ae-67863557848a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Test8"",
+                    ""type"": ""Button"",
+                    ""id"": ""eadf612c-4964-4178-bb22-b1ae15e78bc1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Test9"",
+                    ""type"": ""Button"",
+                    ""id"": ""dfd3217a-59ff-4f70-a6fc-2d03f222e4f9"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Test10"",
+                    ""type"": ""Button"",
+                    ""id"": ""862bb033-c77e-4882-9f26-b809c787e6d2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -140,133 +176,56 @@ public partial class @Test_InputAction: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9deaaf57-2176-474b-b1e1-c59b38071aef"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""id"": ""63c147ef-404e-4915-83d7-af5484b6367b"",
+                    ""path"": ""<Keyboard>/6"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""WASD"",
-                    ""id"": ""5da17880-7bc1-4936-890f-5dbb02bd9bcd"",
-                    ""path"": ""Dpad"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Move"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""25b28ebe-3c1c-4545-b49b-b933c5166266"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;KeyboardMouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""ed836715-dbda-476e-b707-8705fcf54b5a"",
-                    ""path"": ""<Keyboard>/upArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""1ae2db66-fc97-4e48-8372-cfe61fb668d8"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""f7b3bd0c-38a5-4aaf-a435-abe55a3ba80b"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse;KeyboardMouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""63eff23b-9b50-4640-ab56-adb2725d82bf"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""6c959990-4055-48b1-96f0-3a9b251288a2"",
-                    ""path"": ""<Keyboard>/leftArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""28c5f905-c5af-466d-bf0b-e5fb56a46034"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""681ac310-3972-40bd-91f4-a9a1e88b2b13"",
-                    ""path"": ""<Keyboard>/rightArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Move"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b16ade93-24cc-4496-856e-ddf94cf50d02"",
-                    ""path"": ""<XRController>/{Primary2DAxis}"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""XR"",
-                    ""action"": ""Move"",
+                    ""groups"": "";KeyboardMouse"",
+                    ""action"": ""Test6"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""c2124470-bc36-4b92-b431-f59b5ccef245"",
-                    ""path"": ""<Joystick>/stick"",
+                    ""id"": ""9062fbc1-f1da-4eef-bc4f-e068e511e9fe"",
+                    ""path"": ""<Keyboard>/7"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Move"",
+                    ""groups"": "";KeyboardMouse"",
+                    ""action"": ""Test7"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""891f8492-9c86-4ada-afdb-5d393deb6912"",
+                    ""path"": ""<Keyboard>/8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyboardMouse"",
+                    ""action"": ""Test8"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""44cd407c-5b5b-4913-8357-3864edfd8127"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyboardMouse"",
+                    ""action"": ""Test9"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d7b3694-d198-4c6d-9269-66f7b76ca533"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";KeyboardMouse"",
+                    ""action"": ""Test10"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -288,7 +247,11 @@ public partial class @Test_InputAction: IInputActionCollection2, IDisposable
         m_Test_Test3 = m_Test.FindAction("Test3", throwIfNotFound: true);
         m_Test_Test4 = m_Test.FindAction("Test4", throwIfNotFound: true);
         m_Test_Test5 = m_Test.FindAction("Test5", throwIfNotFound: true);
-        m_Test_Move = m_Test.FindAction("Move", throwIfNotFound: true);
+        m_Test_Test6 = m_Test.FindAction("Test6", throwIfNotFound: true);
+        m_Test_Test7 = m_Test.FindAction("Test7", throwIfNotFound: true);
+        m_Test_Test8 = m_Test.FindAction("Test8", throwIfNotFound: true);
+        m_Test_Test9 = m_Test.FindAction("Test9", throwIfNotFound: true);
+        m_Test_Test10 = m_Test.FindAction("Test10", throwIfNotFound: true);
     }
 
     ~@Test_InputAction()
@@ -360,7 +323,11 @@ public partial class @Test_InputAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_Test_Test3;
     private readonly InputAction m_Test_Test4;
     private readonly InputAction m_Test_Test5;
-    private readonly InputAction m_Test_Move;
+    private readonly InputAction m_Test_Test6;
+    private readonly InputAction m_Test_Test7;
+    private readonly InputAction m_Test_Test8;
+    private readonly InputAction m_Test_Test9;
+    private readonly InputAction m_Test_Test10;
     public struct TestActions
     {
         private @Test_InputAction m_Wrapper;
@@ -370,7 +337,11 @@ public partial class @Test_InputAction: IInputActionCollection2, IDisposable
         public InputAction @Test3 => m_Wrapper.m_Test_Test3;
         public InputAction @Test4 => m_Wrapper.m_Test_Test4;
         public InputAction @Test5 => m_Wrapper.m_Test_Test5;
-        public InputAction @Move => m_Wrapper.m_Test_Move;
+        public InputAction @Test6 => m_Wrapper.m_Test_Test6;
+        public InputAction @Test7 => m_Wrapper.m_Test_Test7;
+        public InputAction @Test8 => m_Wrapper.m_Test_Test8;
+        public InputAction @Test9 => m_Wrapper.m_Test_Test9;
+        public InputAction @Test10 => m_Wrapper.m_Test_Test10;
         public InputActionMap Get() { return m_Wrapper.m_Test; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -395,9 +366,21 @@ public partial class @Test_InputAction: IInputActionCollection2, IDisposable
             @Test5.started += instance.OnTest5;
             @Test5.performed += instance.OnTest5;
             @Test5.canceled += instance.OnTest5;
-            @Move.started += instance.OnMove;
-            @Move.performed += instance.OnMove;
-            @Move.canceled += instance.OnMove;
+            @Test6.started += instance.OnTest6;
+            @Test6.performed += instance.OnTest6;
+            @Test6.canceled += instance.OnTest6;
+            @Test7.started += instance.OnTest7;
+            @Test7.performed += instance.OnTest7;
+            @Test7.canceled += instance.OnTest7;
+            @Test8.started += instance.OnTest8;
+            @Test8.performed += instance.OnTest8;
+            @Test8.canceled += instance.OnTest8;
+            @Test9.started += instance.OnTest9;
+            @Test9.performed += instance.OnTest9;
+            @Test9.canceled += instance.OnTest9;
+            @Test10.started += instance.OnTest10;
+            @Test10.performed += instance.OnTest10;
+            @Test10.canceled += instance.OnTest10;
         }
 
         private void UnregisterCallbacks(ITestActions instance)
@@ -417,9 +400,21 @@ public partial class @Test_InputAction: IInputActionCollection2, IDisposable
             @Test5.started -= instance.OnTest5;
             @Test5.performed -= instance.OnTest5;
             @Test5.canceled -= instance.OnTest5;
-            @Move.started -= instance.OnMove;
-            @Move.performed -= instance.OnMove;
-            @Move.canceled -= instance.OnMove;
+            @Test6.started -= instance.OnTest6;
+            @Test6.performed -= instance.OnTest6;
+            @Test6.canceled -= instance.OnTest6;
+            @Test7.started -= instance.OnTest7;
+            @Test7.performed -= instance.OnTest7;
+            @Test7.canceled -= instance.OnTest7;
+            @Test8.started -= instance.OnTest8;
+            @Test8.performed -= instance.OnTest8;
+            @Test8.canceled -= instance.OnTest8;
+            @Test9.started -= instance.OnTest9;
+            @Test9.performed -= instance.OnTest9;
+            @Test9.canceled -= instance.OnTest9;
+            @Test10.started -= instance.OnTest10;
+            @Test10.performed -= instance.OnTest10;
+            @Test10.canceled -= instance.OnTest10;
         }
 
         public void RemoveCallbacks(ITestActions instance)
@@ -453,6 +448,10 @@ public partial class @Test_InputAction: IInputActionCollection2, IDisposable
         void OnTest3(InputAction.CallbackContext context);
         void OnTest4(InputAction.CallbackContext context);
         void OnTest5(InputAction.CallbackContext context);
-        void OnMove(InputAction.CallbackContext context);
+        void OnTest6(InputAction.CallbackContext context);
+        void OnTest7(InputAction.CallbackContext context);
+        void OnTest8(InputAction.CallbackContext context);
+        void OnTest9(InputAction.CallbackContext context);
+        void OnTest10(InputAction.CallbackContext context);
     }
 }

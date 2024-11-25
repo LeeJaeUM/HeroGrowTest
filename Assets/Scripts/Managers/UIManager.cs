@@ -8,23 +8,22 @@ public class UIManager : Singleton<UIManager>
 
     protected override void Awake()
     {
-        base.Awake();  // ºÎ¸ğ Å¬·¡½ºÀÇ Awake() È£Ãâ
-        // UI ÃÊ±âÈ­
+        base.Awake();  // ë¶€ëª¨ í´ë˜ìŠ¤ì˜ Awake() í˜¸ì¶œ
+        // UI ì´ˆê¸°í™”
         ShowMainMenu();
     }
-    private void OnEnable()
+    private void Start()
     {
-        GameManager.OnGameStateChanged += HandleGameStateChanged;  // »óÅÂ º¯°æ ÀÌº¥Æ® µî·Ï
+        GameManager.OnGameStateChanged += HandleGameStateChanged;  // ìƒíƒœ ë³€ê²½ ì´ë²¤íŠ¸ ë“±ë¡
     }
-
     private void OnDisable()
     {
-        GameManager.OnGameStateChanged -= HandleGameStateChanged;  // ÀÌº¥Æ® ÇØÁ¦
+        GameManager.OnGameStateChanged -= HandleGameStateChanged;  // ì´ë²¤íŠ¸ í•´ì œ
     }
 
     private void HandleGameStateChanged(GameState newState)
     {
-        // »óÅÂ¿¡ µû¶ó UI¸¦ º¯°æÇÏ´Â ·ÎÁ÷
+        // ìƒíƒœì— ë”°ë¼ UIë¥¼ ë³€ê²½í•˜ëŠ” ë¡œì§
         switch (newState)
         {
             case GameState.MainMenu:
@@ -36,10 +35,14 @@ public class UIManager : Singleton<UIManager>
             case GameState.Paused:
                 ShowPauseMenu();
                 break;
+            case GameState.RewardSelect:
+                AcquireLootBox();
+                break;
             case GameState.GameOver:
                 //ShowGameOverScreen();
                 break;
-            default: print("ÇöÀç ¾ø´Â UI »óÅÂ´Ù");
+            default:
+                print("í˜„ì¬ ì—†ëŠ” UI ìƒíƒœë‹¤");
                 break;
         }
     }
@@ -69,5 +72,10 @@ public class UIManager : Singleton<UIManager>
         pauseMenuUI.SetActive(false);
     }
 
-    // UI °ü·Ã Ãß°¡ ¸Ş¼Òµåµé...
+    public void AcquireLootBox()
+    {
+
+    }
+
+    // UI ê´€ë ¨ ì¶”ê°€ ë©”ì†Œë“œë“¤...
 }

@@ -12,22 +12,22 @@ public class Test_05_GameManager_State : TestBase
     }
     protected override void OnTest1(InputAction.CallbackContext context)
     {
-        gameManager.StartGame();
+        gameManager.StateChange_InGame();
     }
 
     protected override void OnTest2(InputAction.CallbackContext context)
     {
         base.OnTest2(context);
-        gameManager.EndGame();
+        gameManager.StateChange_Gameover();
     }
 
     protected override void OnTest3(InputAction.CallbackContext context)
     {
-        gameManager.PauseGame();
+        gameManager.StateChange_Paused();
     }
 
     protected override void OnTest4(InputAction.CallbackContext context)
     {
-        gameManager.ResumeGame();
+        gameManager.StateChange_ResumeInGame();
     }
 }

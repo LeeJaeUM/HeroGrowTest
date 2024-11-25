@@ -20,6 +20,7 @@ public class ItemManager : Singleton<ItemManager>
             case ItemType.LootBox:
                 Debug.Log("lootBox 획득");
                 lootBoxCount+= amount;
+                GameManager.Instance.StateChange_RewardSelect();
                 break;
         }
 

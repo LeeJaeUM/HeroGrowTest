@@ -15,11 +15,15 @@ public class InputManager : Singleton<InputManager>
         playerInput = GetComponent<PlayerInput>();
 
     }
-    private void OnEnable()
+    private void Start()
     {
-       // SwitchToPlayerControls();
+        GameManager.OnGameStateChanged += HandleGameStateChanged;  // 상태 변경 이벤트 등록
     }
-
+    private void OnDisable()
+    {
+        GameManager.OnGameStateChanged -= HandleGameStateChanged;  // 이벤트 해제
+    }
+    
     private void HandleMove(InputAction.CallbackContext context)
     {
         throw new NotImplementedException();
@@ -36,34 +40,42 @@ public class InputManager : Singleton<InputManager>
         OnClickAction?.Invoke();
     }
 
-    void OnTest1(InputValue inputValue)
+    #region StateChange
+    private void HandleGameStateChanged(GameState newState)
     {
-        print("Test1_ SwitchToPlayerControls");
-        SwitchToPlayerControls();
-    }
-    void OnTest2(InputValue inputValue)
-    {
-        print("Test2_SwitchToUIControls(");
-        SwitchToUIControls();
-    }
-    void OnTestUI1(InputValue inputValue)
-    {
-        print("Testui1_ SwitchToPlayerControls");
-        SwitchToPlayerControls();
-    }
-    void OnTestUI2(InputValue inputValue)
-    {
-        print("Testui2_SwitchToUIControls(");
-        SwitchToUIControls();
-    }
-    public void SwitchToPlayerControls()
-    {
-        playerInput.SwitchCurrentActionMap("Player");
+        // 상태에 따라 UI를 변경하는 로직
+        switch (newState)
+        {
+            case GameState.MainMenu:
+            case GameState.Paused:
+            case GameState.RewardSelect:
+            case GameState.GameOver:
+                SwitchActionMapToUI();
+                break;
+            case GameState.InGame:
+                SwitchActionMapToPlayer();
+                break;
+            default:
+                print("현재 없는 state 상태다");
+                break;
+        }
     }
 
-    public void SwitchToUIControls()
+
+    //ActionMap 변경
+    public void SwitchActionMapToPlayer()
+    {
+        playerInput.SwitchCurrentActionMap("Player");
+        Debug.Log("Player 액션맵으로 변경");
+    }
+
+    public void SwitchActionMapToUI()
     {
         playerInput.SwitchCurrentActionMap("UI");
+        Debug.Log("UI 액션맵으로 변경");
     }
+    #endregion
+
+
 
 }

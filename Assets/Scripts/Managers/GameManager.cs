@@ -7,12 +7,13 @@ public enum GameState
     MainMenu,
     InGame,
     Paused,
+    RewardSelect,
     GameOver
 }
 public class GameManager : Singleton<GameManager>
 {
     readonly int Scene_Title_Hash = Animator.StringToHash("01_Title");
-    readonly int Scene_Main_Hash = Animator.StringToHash("02_Lobby");
+    readonly int Scene_Lobby_Hash = Animator.StringToHash("02_Lobby");
     readonly int Scene_Ingame_Hash = Animator.StringToHash("03_InGame");
 
     [SerializeField]
@@ -50,7 +51,7 @@ public class GameManager : Singleton<GameManager>
         }
     }
     // 게임 시작
-    public void StartGame()
+    public void StateChange_InGame()
     {
         Debug.Log("Game Started");
         CurrentState = GameState.InGame;
@@ -59,7 +60,7 @@ public class GameManager : Singleton<GameManager>
         isGameActive = true;
         playTimeCoroutine = StartCoroutine(TrackPlayTime());
     }   // 게임 종료
-    public void EndGame()
+    public void StateChange_Gameover()
     {
         Debug.Log("Game Over");
         CurrentState = GameState.GameOver;
@@ -71,31 +72,31 @@ public class GameManager : Singleton<GameManager>
     }
 
     // 게임 일시정지
-    public void PauseGame()
+    public void StateChange_Paused()
     {
         CurrentState = GameState.Paused;
         isGameActive = false;  // 게임을 일시정지 상태로 만듦
         Time.timeScale = 0;  // 게임 시간을 멈춤 (물리적 시간도 멈춤)
         Debug.Log("Game Paused");
+    }   
+    
+    // 게임 일시정지
+    public void StateChange_RewardSelect()
+    {
+        CurrentState = GameState.RewardSelect;
+        isGameActive = false;  // 게임을 일시정지 상태로 만듦
+        Time.timeScale = 0;  // 게임 시간을 멈춤 (물리적 시간도 멈춤)
+        Debug.Log("RewardSelect!! ");
     }
 
     // 게임 재개
-    public void ResumeGame()
+    public void StateChange_ResumeInGame()
     {
-        if (_currentState == GameState.Paused)
-        {
-            CurrentState = GameState.InGame;
-            isGameActive = true;
-            Time.timeScale = 1;  // 게임 시간 다시 흐르게 함
-            Debug.Log("Game Resumed");
-        }
+        CurrentState = GameState.InGame;
+        isGameActive = true;
+        Time.timeScale = 1;  // 게임 시간 다시 흐르게 함
+        Debug.Log("Game Resumed");
     }
-
-    // 씬 로드 처리
-    //private void LoadScene(string sceneName)
-    //{
-    //    SceneManager.LoadScene(sceneName);
-    //}
 
     // 게임 데이터를 저장하는 메서드 (예시)
     private void SaveGameData()
@@ -125,11 +126,11 @@ public class GameManager : Singleton<GameManager>
     #region SceneMove_StateVersion
     public void ChangeToTitle()
     {
-        SceneManager.LoadScene("01_Title");
+        SceneManager.LoadScene(Scene_Title_Hash);
     }
     public void ChangeToLobby()
     {
-        SceneManager.LoadScene("02_Lobby");
+        SceneManager.LoadScene(Scene_Lobby_Hash);
     }
     #endregion
 
