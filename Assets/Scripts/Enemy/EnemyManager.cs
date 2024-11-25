@@ -12,12 +12,9 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         characterHP = GetComponent<CharacterHP>();
-    }
-
-    private void OnEnable()
-    {
         characterHP.onDead += DeadEnemy;
     }
+
     private void OnDisable()
     {
         characterHP.onDead -= DeadEnemy;

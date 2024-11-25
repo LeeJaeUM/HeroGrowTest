@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     public float bulletSpeed = 5.0f;
     public float lifeTime = 5f;  // Bullet's lifetime before it's destroyed
     public float damageAmount = 10.0f;
+    public bool isEnemyBullet = true;
 
     private void Start()
     {
@@ -20,22 +21,25 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        // ÇÃ·¹ÀÌ¾îÀÇ ÃÑ¾ËÀÌ Àû°ú Ãæµ¹ÇÑ °æ¿ì
-
-        if (other.TryGetComponent<EnemyManager>(out EnemyManager enemy))
+        // í”Œë ˆì´ì–´ì˜ ì´ì•Œì´ ì ê³¼ ì¶©ëŒí•œ ê²½ìš°
+        if (!isEnemyBullet)
         {
-            enemy.DecreaseEnemyHealth(damageAmount);
-            Debug.Log("Enemy hit! Health reduced by " + damageAmount);
-            Destroy(gameObject);
+            if (other.TryGetComponent<EnemyManager>(out EnemyManager enemy))
+            {
+                enemy.DecreaseEnemyHealth(damageAmount);
+                Debug.Log("Enemy hit! Health reduced by " + damageAmount);
+                Destroy(gameObject);
+            }
         }
-        else if (other.TryGetComponent<PlayerManager>(out PlayerManager playerManager))
+        else if (isEnemyBullet)
         {
-            // Call the DecreasePlayerHealth function on the PlayerManager
-            playerManager.DecreasePlayerHealth(damageAmount);
-            Debug.Log("Player hit! Health reduced by " + damageAmount);
-            Destroy(gameObject);
+            if (other.TryGetComponent<PlayerManager>(out PlayerManager playerManager))
+            {
+                // Call the DecreasePlayerHealth function on the PlayerManager
+                playerManager.DecreasePlayerHealth(damageAmount);
+                Debug.Log("Player hit! Health reduced by " + damageAmount);
+                Destroy(gameObject);
+            }
         }
-
     }
-
 }

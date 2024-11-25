@@ -78,37 +78,3 @@ public class WeaponManager : MonoBehaviour
     //    return ingameWeapons;
     //}
 }
-
-
-/*
-if (existingWeapon != null)
-{
-    // 무기 업그레이드
-    if (existingWeapon.UpgradeWeapon())
-    {
-        Debug.Log($"{weapon.weaponName} 업그레이드! 현재 레벨: {existingWeapon.currentLevel}");
-    }
-    else
-    {
-        Debug.Log($"{weapon.weaponName}은 최대 레벨에 도달했습니다.");
-    }
-}
-else
-{
-    // 새로운 무기를 추가
-    if (ingameWeapons.Count < maxWeaponSlots)
-    {
-        ingameWeapons.Add(weapon);
-
-        // prefab 인스턴스화
-        GameObject weaponInstance = Instantiate(weapon.prefab);
-
-        // WeaponManager의 자식으로 설정
-        weaponInstance.transform.SetParent(transform);
-        Debug.Log($"{weapon.weaponName} 획득!");
-    }
-    else
-    {
-        Debug.Log("더 이상 무기를 추가할 수 없습니다.");
-    }
-}*/

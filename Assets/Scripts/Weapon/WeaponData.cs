@@ -2,10 +2,17 @@ using UnityEngine;
 
 public class WeaponData : MonoBehaviour
 {
-    public string weaponName;    // 무기 이름
+    public string weaponName;    
     public int weaponID;         // 고유 번호 (예: 1 = 단검, 2 = 레이저, 3 = 활)
-    public int currentLevel = 1; // 현재 레벨 (초기값 1)
-    public int maxLevel = 5;     // 최대 레벨
+    [SerializeField]
+    private int currentLevel = 1;
+    public int CurrentLevel
+    {
+        get => currentLevel;
+        private set => currentLevel = value;
+    }
+
+    public int maxLevel = 5;     
     public int damage = 5;
 
     private WeaponManager weaponManager;
@@ -23,7 +30,7 @@ public class WeaponData : MonoBehaviour
 
         if (currentLevel < maxLevel)
         {
-            currentLevel++;
+            CurrentLevel++;
         }
     }
 
