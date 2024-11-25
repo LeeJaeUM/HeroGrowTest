@@ -17,7 +17,7 @@ public class InputManager : Singleton<InputManager>
     }
     private void OnEnable()
     {
-        SwitchToPlayerControls();
+       // SwitchToPlayerControls();
     }
 
     private void HandleMove(InputAction.CallbackContext context)
@@ -32,7 +32,7 @@ public class InputManager : Singleton<InputManager>
 
     void OnClick(InputValue inputValue)
     {
-        print("≈¨∏Ø«‘");
+        print("ÌÅ¥Î¶≠Ìï®");
         OnClickAction?.Invoke();
     }
 

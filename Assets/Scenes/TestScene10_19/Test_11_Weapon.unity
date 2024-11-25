@@ -269,13 +269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82102325a2f5ec349b7b04359028705b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponManager: {fileID: 1710913247}
-  index: 0
-  weaponEncyclopedia:
-  - {fileID: 11400000, guid: bf7bd164ccab4e2428ba10f5d35f2b50, type: 2}
-  - {fileID: 11400000, guid: c19ed883ec69f4d4789345ec9b6f94a2, type: 2}
-  - {fileID: 11400000, guid: 1aef6bb2ed95fb34285eda46353c17ba, type: 2}
-  ingameWeapons: []
+  weaponManager: {fileID: 1710913249}
 --- !u!4 &436725365
 Transform:
   m_ObjectHideFlags: 0
@@ -643,7 +637,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1710913248}
-  - component: {fileID: 1710913247}
+  - component: {fileID: 1710913249}
   m_Layer: 0
   m_Name: WeaponManager
   m_TagString: Untagged
@@ -651,23 +645,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1710913247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710913246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0baa00be23f3772489661268c7096af8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponEncyclopedia:
-  - {fileID: 11400000, guid: bf7bd164ccab4e2428ba10f5d35f2b50, type: 2}
-  - {fileID: 11400000, guid: c19ed883ec69f4d4789345ec9b6f94a2, type: 2}
-  - {fileID: 11400000, guid: 1aef6bb2ed95fb34285eda46353c17ba, type: 2}
-  ingameWeapons: []
 --- !u!4 &1710913248
 Transform:
   m_ObjectHideFlags: 0
@@ -683,6 +660,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1710913249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710913246}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0baa00be23f3772489661268c7096af8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allWeapons:
+  - weaponPrefab: {fileID: 0}
+    level: 1
+  - weaponPrefab: {fileID: 0}
+    level: 1
+  - weaponPrefab: {fileID: 0}
+    level: 1
+  - weaponPrefab: {fileID: 0}
+    level: 1
+  - weaponPrefab: {fileID: 0}
+    level: 1
+  - weaponPrefab: {fileID: 0}
+    level: 1
+  - weaponPrefab: {fileID: 0}
+    level: 1
+  equippedWeapons: []
 --- !u!1 &2144308687
 GameObject:
   m_ObjectHideFlags: 0

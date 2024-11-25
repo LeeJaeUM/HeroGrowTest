@@ -3,63 +3,56 @@ using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
 {
+    public WeaponData[] allWeapons; // 모든 무기 데이터
+    public WeaponData[] equippedWeapons = new WeaponData[6]; // 장착된 무기
     [SerializeField]
-    private GameObject[] weaponEncyclopedia;
-    [SerializeField]
-    private bool[] isWeaponInUse;  // 각 무기의 사용 여부를 추적하는 배열
-    [SerializeField]
-    private GameObject[] ingameWeapons; 
-    private int maxWeaponSlots = 6;
-    void Start()
+    private bool[] weaponEquipped; // 무기 장착 여부 (allWeapons 크기와 동일)
+
+    private void Awake()
     {
-        // isWeaponInUse 배열의 크기를 weaponEncyclopedia 배열의 크기와 맞춰 초기화
-        isWeaponInUse = new bool[weaponEncyclopedia.Length];
-    }
-    // 무기를 사용할 때, 사용 여부 업데이트
-    public void UseWeapon(int index)
-    {
-        if (index >= 0 && index < weaponEncyclopedia.Length)
-        {
-            if (!isWeaponInUse[index])  // 무기가 사용 중이지 않으면
-            {
-                // 무기를 사용한다고 가정하고, 사용 여부를 true로 설정
-                isWeaponInUse[index] = true;
-                Debug.Log(weaponEncyclopedia[index].name + " is now in use.");
-            }
-            else
-            {
-                Debug.Log(weaponEncyclopedia[index].name + " is already in use.");
-            }
-        }
-        else
-        {
-            Debug.LogWarning("Invalid index.");
-        }
+        weaponEquipped = new bool[allWeapons.Length];
     }
 
-    // 무기를 더 이상 사용하지 않으면, 사용 여부를 false로 설정
-    public void StopUsingWeapon(int index)
+    public bool AddWeapon(int weaponIndex)
     {
-        if (index >= 0 && index < weaponEncyclopedia.Length)
+        if (weaponIndex < 0 || weaponIndex >= allWeapons.Length)
         {
-            isWeaponInUse[index] = false;
-            Debug.Log(weaponEncyclopedia[index].name + " is no longer in use.");
+            Debug.LogWarning("Invalid weapon index.");
+            return false;
         }
-        else
-        {
-            Debug.LogWarning("Invalid index.");
-        }
-    }
 
-    // 무기가 사용 중인지 체크하는 메서드
-    public bool IsWeaponInUse(int index)
-    {
-        if (index >= 0 && index < weaponEncyclopedia.Length)
+        if (weaponEquipped[weaponIndex])
         {
-            return isWeaponInUse[index];  // 해당 인덱스의 사용 여부 반환
+            LevelUpWeapon(weaponIndex);
+            return false;
         }
+
+        // 빈 슬롯에 무기 추가
+        for (int i = 0; i < equippedWeapons.Length; i++)
+        {
+            if (equippedWeapons[i].weaponPrefab == null)
+            {
+                equippedWeapons[i].weaponPrefab = allWeapons[weaponIndex].weaponPrefab;
+                weaponEquipped[weaponIndex] = true;     
+
+                GameObject weaponInstance = Instantiate(equippedWeapons[i].weaponPrefab);
+                weaponInstance.transform.SetParent(transform);
+
+                Debug.Log($"Weapon {weaponIndex} added at level {allWeapons[weaponIndex].level}.");
+                return true;
+            }
+        }
+
+        Debug.LogWarning("No empty slot available.");
         return false;
     }
+
+    private void LevelUpWeapon(int weaponIndex)
+    {
+        allWeapons[weaponIndex].level++;
+        Debug.Log($"Weapon {weaponIndex} leveled up to level {allWeapons[weaponIndex].level}.");
+    }
+
 
     //public void AddWeapon(int _weaponID)
     //{
@@ -82,35 +75,35 @@ public class WeaponManager : MonoBehaviour
 }
 
 
-            /*
-            if (existingWeapon != null)
-            {
-                // 무기 업그레이드
-                if (existingWeapon.UpgradeWeapon())
-                {
-                    Debug.Log($"{weapon.weaponName} 업그레이드! 현재 레벨: {existingWeapon.currentLevel}");
-                }
-                else
-                {
-                    Debug.Log($"{weapon.weaponName}은 최대 레벨에 도달했습니다.");
-                }
-            }
-            else
-            {
-                // 새로운 무기를 추가
-                if (ingameWeapons.Count < maxWeaponSlots)
-                {
-                    ingameWeapons.Add(weapon);
+/*
+if (existingWeapon != null)
+{
+    // 무기 업그레이드
+    if (existingWeapon.UpgradeWeapon())
+    {
+        Debug.Log($"{weapon.weaponName} 업그레이드! 현재 레벨: {existingWeapon.currentLevel}");
+    }
+    else
+    {
+        Debug.Log($"{weapon.weaponName}은 최대 레벨에 도달했습니다.");
+    }
+}
+else
+{
+    // 새로운 무기를 추가
+    if (ingameWeapons.Count < maxWeaponSlots)
+    {
+        ingameWeapons.Add(weapon);
 
-                    // prefab 인스턴스화
-                    GameObject weaponInstance = Instantiate(weapon.prefab);
+        // prefab 인스턴스화
+        GameObject weaponInstance = Instantiate(weapon.prefab);
 
-                    // WeaponManager의 자식으로 설정
-                    weaponInstance.transform.SetParent(transform);
-                    Debug.Log($"{weapon.weaponName} 획득!");
-                }
-                else
-                {
-                    Debug.Log("더 이상 무기를 추가할 수 없습니다.");
-                }
-            }*/
+        // WeaponManager의 자식으로 설정
+        weaponInstance.transform.SetParent(transform);
+        Debug.Log($"{weapon.weaponName} 획득!");
+    }
+    else
+    {
+        Debug.Log("더 이상 무기를 추가할 수 없습니다.");
+    }
+}*/
