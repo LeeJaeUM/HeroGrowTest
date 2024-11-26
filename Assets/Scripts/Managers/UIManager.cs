@@ -8,13 +8,12 @@ public class UIManager : Singleton<UIManager>
     public GameObject rewardSelecUI;
     public GameObject gameoverUI;
 
-    protected override void Awake()
-    {
-        base.Awake();  // 부모 클래스의 Awake() 호출
+    public LootBoxUI lootBoxUI;
 
-    }
     private void Start()
     {        
+        lootBoxUI = GetComponentInChildren<LootBoxUI>();
+
         // UI 초기화
         ShowMainMenu();
         GameManager.OnGameStateChanged += HandleGameStateChanged;  // 상태 변경 이벤트 등록
@@ -26,7 +25,6 @@ public class UIManager : Singleton<UIManager>
 
     private void HandleGameStateChanged(GameState newState)
     {
-        HideAllUI();
         // 상태에 따라 UI를 변경하는 로직
         switch (newState)
         {
@@ -53,11 +51,13 @@ public class UIManager : Singleton<UIManager>
 
     public void ShowMainMenu()
     {
+        HideAllUI();
         mainMenuUI.SetActive(true);
     }
 
     public void ShowInGame()
     {
+        HideAllUI();
         inGameUI.SetActive(true);
     }
 
@@ -69,6 +69,7 @@ public class UIManager : Singleton<UIManager>
     public void ShowRewardSelect()
     {
         rewardSelecUI.SetActive(true);
+        lootBoxUI.AssignRandomValues();
     }
 
     public void ShowGameover()
@@ -81,6 +82,8 @@ public class UIManager : Singleton<UIManager>
         mainMenuUI.SetActive(false);
         inGameUI.SetActive(false);
         pauseMenuUI.SetActive(false);
+        rewardSelecUI.SetActive(false);
+        gameoverUI.SetActive(false);
     }
 
 }

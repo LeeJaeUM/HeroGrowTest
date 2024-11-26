@@ -66,6 +66,7 @@ public class LootBoxUI : MonoBehaviour
             }
         }
         WeaponManager.Instance.AddWeapon(index);
+        GameManager.Instance.StateChange_ResumeInGame();
        
     }
 

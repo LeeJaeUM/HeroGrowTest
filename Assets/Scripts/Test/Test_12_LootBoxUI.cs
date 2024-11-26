@@ -6,24 +6,23 @@ public class Test_12_LootBoxUI : TestBase
     public LootBoxUI lootBoxReward;
     protected override void OnTest1(InputAction.CallbackContext context)
     {
-        GameManager.Instance.StateChange_RewardSelect(); 
+        GameManager.Instance.StateChange_InGame();
     }
     protected override void OnTest2(InputAction.CallbackContext context)
     {
-        GameManager.Instance.StateChange_ResumeInGame();
+        GameManager.Instance.StateChange_RewardSelect();
     }
     protected override void OnTest3(InputAction.CallbackContext context)
     {
-
-        ItemManager.Instance.AcquireItem(ItemType.LootBox, 1);
+        GameManager.Instance.StateChange_ResumeInGame();
     }
     protected override void OnTest4(InputAction.CallbackContext context)
     {
-        lootBoxReward.AssignRandomValues();
+        GameManager.Instance.StateChange_Paused();
     }
     protected override void OnTest5(InputAction.CallbackContext context)
     {
-        base.OnTest5(context);
+        lootBoxReward.AssignRandomValues();
     }
     protected override void OnTest6(InputAction.CallbackContext context)
     {
