@@ -72,7 +72,7 @@ MonoBehaviour:
   weaponID: 0
   currentLevel: 1
   maxLevel: 5
-  damage: 5
+  damage: 15
 --- !u!114 &6418504376273515040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -85,8 +85,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 438bf5f8248a1174ba1f6da1cb44e3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  orbitRadius: 2
-  orbitSpeed: 5
+  orbitRadius: 4
+  orbitSpeed: 3
 --- !u!1 &6785751326067743394
 GameObject:
   m_ObjectHideFlags: 0

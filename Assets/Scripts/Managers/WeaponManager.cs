@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : Singleton<WeaponManager>
+public class WeaponManager : MonoBehaviour
 {
     public GameObject[] allWeapons; // 모든 무기 데이터
     public GameObject[] equippedWeapons = new GameObject[6]; // 장착된 무기

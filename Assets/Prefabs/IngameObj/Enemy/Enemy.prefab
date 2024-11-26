@@ -178,6 +178,7 @@ MonoBehaviour:
   dropItemHeight: 0.9
   characterHP: {fileID: 0}
   dropCoin: {fileID: 3240375764217913581, guid: 953f6c1709d3c2d40b81e0605dd5d812, type: 3}
+  dropExp: {fileID: 3240375764217913581, guid: 4e7b7b29f2de03545866d2069324d625, type: 3}
 --- !u!114 &8662700539817517519
 MonoBehaviour:
   m_ObjectHideFlags: 0

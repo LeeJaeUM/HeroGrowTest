@@ -2,26 +2,24 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InputManager : Singleton<InputManager>
+public class InputManager : MonoBehaviour
 {
     private PlayerInput playerInput;
 
     public event Action<Vector2> OnMoveAction;
     public event Action OnClickAction;
 
-    protected override void Awake()
-    {
-        base.Awake();  
+    private void Awake()
+    {;  
         playerInput = GetComponent<PlayerInput>();
-
     }
-    private void Start()
+    private void OnEnable()
     {
-        GameManager.OnGameStateChanged += HandleGameStateChanged;  // 상태 변경 이벤트 등록
+        GameManager.Instance.StateManager.OnGameStateChanged += HandleGameStateChanged;  // 상태 변경 이벤트 등록
     }
     private void OnDisable()
     {
-        GameManager.OnGameStateChanged -= HandleGameStateChanged;  // 이벤트 해제
+        GameManager.Instance.StateManager.OnGameStateChanged -= HandleGameStateChanged;  // 이벤트 해제
     }
     
     private void HandleMove(InputAction.CallbackContext context)

@@ -31,6 +31,6 @@ public class PlayerController : MonoBehaviour
 
     void AttachInputManager()
     {
-        InputManager.Instance.OnMoveAction += PlayerMove;
+        GameManager.Instance.InputManager.OnMoveAction += PlayerMove;
     }
 }

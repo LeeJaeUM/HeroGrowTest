@@ -1,6 +1,6 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class InGameDataUI : MonoBehaviour
 {
@@ -9,7 +9,7 @@ public class InGameDataUI : MonoBehaviour
     TextMeshProUGUI killTMP;
     TextMeshProUGUI expTMP;
 
-    Slider slider;
+    Slider expSlider;
 
     GameManager gameManager;
     UIManager uiManager;
@@ -20,20 +20,21 @@ public class InGameDataUI : MonoBehaviour
         getCoinTMP = transform.GetChild(1).GetComponent<TextMeshProUGUI>();
         killTMP = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         expTMP = transform.GetChild(3).GetComponent<TextMeshProUGUI>();
-        slider = transform.GetChild(4).GetComponent<Slider>();
+        expSlider = transform.GetChild(4).GetComponent<Slider>();
 
         gameManager = GameManager.Instance;
-        uiManager = UIManager.Instance;
+        uiManager = GameManager.Instance.UiManager;
     }
     private void Start()
     {
-        uiManager.OnGetCoin += CoinCountUpdate;
+        uiManager.OnAddCoin += CoinCountUpdate;
         uiManager.OnAddKillCount += KillCountUpdate;
+        uiManager.OnAddExp += ExpSliderUpdate;
     }
 
     private void Update()
     {
-        playTimeTMP.text = gameManager.playTime.ToString();
+        playTimeTMP.text = gameManager.StateManager.playTime.ToString();
     }
 
     private void CoinCountUpdate(int count)
@@ -44,5 +45,10 @@ public class InGameDataUI : MonoBehaviour
     private void KillCountUpdate(int count)
     {
         killTMP.text = count.ToString();
+    }
+
+    private void ExpSliderUpdate(float percent)
+    {
+        expSlider.value = percent;
     }
 }

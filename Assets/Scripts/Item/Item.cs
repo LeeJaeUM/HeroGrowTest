@@ -5,7 +5,8 @@ public enum ItemType
     None,
     Coin,
     Heart,
-    LootBox
+    LootBox,
+    Exp
 }
 
 public class Item : MonoBehaviour
@@ -21,7 +22,7 @@ public class Item : MonoBehaviour
         switch (itemType)
         {
             case ItemType.Coin:
-                amount = 50;
+                amount = 5;
                 break;
             case ItemType.Heart:
                 amount = 20;
@@ -29,12 +30,15 @@ public class Item : MonoBehaviour
             case ItemType.LootBox:
                 amount = 1;
                 break;
+            case ItemType.Exp:
+                amount = 10;
+                break;
             default:
                 Debug.Log("아이템의 타입이 설정되지 않음");
                 break;
         }
 
-        uiManager = UIManager.Instance;
+        uiManager = GameManager.Instance.UiManager;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,6 +49,7 @@ public class Item : MonoBehaviour
             {
                 case ItemType.Coin:
                 case ItemType.LootBox:
+                case ItemType.Exp:
                     uiManager.AcquireItem(itemType, amount);
                     break;
                 case ItemType.Heart:

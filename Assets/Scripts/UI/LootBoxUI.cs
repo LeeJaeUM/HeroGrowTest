@@ -65,8 +65,8 @@ public class LootBoxUI : MonoBehaviour
                 index = availableWeaponIDs[i];
             }
         }
-        WeaponManager.Instance.AddWeapon(index);
-        GameManager.Instance.StateChange_ResumeInGame();
+        GameManager.Instance.WeaponManager.AddWeapon(index);
+        GameManager.Instance.StateManager.StateChange_ResumeInGame();
        
     }
 

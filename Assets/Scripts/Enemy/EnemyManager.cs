@@ -4,10 +4,12 @@ public class EnemyManager : MonoBehaviour
 {
     public float damageAmount = 10f;
     public float dropItemHeight = 0.9f;
+    public int expDropPercent = 30;
 
     [SerializeField]
     CharacterHP characterHP;
     public GameObject dropCoin;
+    public GameObject dropExp;
 
     private void Start()
     {
@@ -50,10 +52,12 @@ public class EnemyManager : MonoBehaviour
         // 적의 현재 위치를 얻어옴
         Vector3 enemyPosition = new Vector3(transform.position.x, dropItemHeight, transform.position.z);
 
-        // 적의 위치에 코인을 생성
-        Instantiate(dropCoin, enemyPosition, Quaternion.identity);
+        // 적의 위치에 아이템을 생성
+        Instantiate(dropExp, enemyPosition, Quaternion.identity);
+        if(UnityEngine.Random.Range(0, 100) < expDropPercent)
+            Instantiate(dropCoin, enemyPosition, Quaternion.identity);
 
-        UIManager.Instance.AddKillCount();
+        GameManager.Instance.UiManager.AddKillCount();
 
         // 적 오브젝트 파괴
         Destroy(gameObject);
