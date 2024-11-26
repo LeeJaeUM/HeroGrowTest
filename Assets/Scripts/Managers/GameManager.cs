@@ -35,7 +35,6 @@ public class GameManager : Singleton<GameManager>
 
     public float playTime { get; private set; }
     private bool isGameActive;
-    private Coroutine playTimeCoroutine;
 
     protected override void Awake()
     {
@@ -58,7 +57,6 @@ public class GameManager : Singleton<GameManager>
 
         // 게임 시간 측정 시작
         isGameActive = true;
-        playTimeCoroutine = StartCoroutine(TrackPlayTime());
     }   // 게임 종료
     public void StateChange_Gameover()
     {
@@ -104,17 +102,6 @@ public class GameManager : Singleton<GameManager>
         // 예를 들어, 게임의 점수나 진행 상황을 저장
         PlayerPrefs.SetFloat("LastPlayTime", playTime);
         Debug.Log($"Game data saved: Play time - {playTime} seconds");
-    }
-
-    // 플레이 시간 추적 코루틴
-    private IEnumerator TrackPlayTime()
-    {
-        while (_currentState == GameState.InGame)
-        {
-            // 플레이 시간 업데이트 (1초마다)
-            yield return new WaitForSeconds(1);
-            Debug.Log($"Play time: {playTime} seconds");
-        }
     }
 
     // 게임 상태 출력 (디버그용)

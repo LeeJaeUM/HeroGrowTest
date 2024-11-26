@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
@@ -8,7 +9,44 @@ public class UIManager : Singleton<UIManager>
     public GameObject rewardSelecUI;
     public GameObject gameoverUI;
 
+    [Header("Scripts")]
     public LootBoxUI lootBoxUI;
+    [SerializeField]
+    private int coinCount = 10;
+    public int CoinCount
+    {
+        get=> coinCount;
+        private set 
+        {
+            if (coinCount != value)
+            {
+                coinCount = value; 
+                OnGetCoin?.Invoke(coinCount);
+            }
+        }
+    }
+    public event Action<int> OnGetCoin;
+
+    [SerializeField]
+    private int lootBoxCount = 0;
+
+    private int killCount = 0;
+    public int KillCount 
+    { 
+        get => killCount;
+        private set
+        {
+            if(killCount != value)
+            {
+                killCount = value;
+                OnAddKillCount?.Invoke(killCount);
+            }
+
+        }
+    }
+    public event Action<int> OnAddKillCount;
+
+    UIManager uiManager;
 
     private void Start()
     {        
@@ -86,4 +124,29 @@ public class UIManager : Singleton<UIManager>
         gameoverUI.SetActive(false);
     }
 
+    public void AddCoinCount(int _amount)
+    {
+        CoinCount += _amount;
+    }
+
+    public void AddKillCount()
+    {
+        KillCount++;
+    }
+
+    public void AcquireItem(ItemType itemType, int amount)
+    {
+        switch (itemType)
+        {
+            case ItemType.Coin:
+                Debug.Log("coin 획득");
+                AddCoinCount(amount);
+                break;
+            case ItemType.LootBox:
+                Debug.Log("lootBox 획득");
+                lootBoxCount += amount;
+                GameManager.Instance.StateChange_RewardSelect();
+                break;
+        }
+    }
 }

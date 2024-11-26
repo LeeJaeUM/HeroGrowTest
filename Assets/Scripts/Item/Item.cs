@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
 
     public int amount = 1;
 
-    ItemManager itemManager;
+    UIManager uiManager;
 
     private void Start()
     {
@@ -34,7 +34,7 @@ public class Item : MonoBehaviour
                 break;
         }
 
-        itemManager = ItemManager.Instance;
+        uiManager = UIManager.Instance;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,7 +45,7 @@ public class Item : MonoBehaviour
             {
                 case ItemType.Coin:
                 case ItemType.LootBox:
-                    itemManager.AcquireItem(itemType, amount);
+                    uiManager.AcquireItem(itemType, amount);
                     break;
                 case ItemType.Heart:
                     playerManager.AcquireItem_Heart(amount);

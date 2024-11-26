@@ -49,9 +49,7 @@ LootBox획득시 흐름
 
 lootbox오브젝트의 Item.cs -> ItemManager ->
 	-> GameManager의 State변경 액션 발동 
-	-> UIManager의 AcquireLootBox 실행
-
-AcquireLootBox함수 기능
+	-> GameManager의 GameState를 RewardSelect로 변경
 
 InputManager의 ActionMap을 UI로 변경하도록 지시 
 	-> 입력을 UI로 전환 - ok

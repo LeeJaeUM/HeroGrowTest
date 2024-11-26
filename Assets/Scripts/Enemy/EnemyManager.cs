@@ -53,6 +53,8 @@ public class EnemyManager : MonoBehaviour
         // 적의 위치에 코인을 생성
         Instantiate(dropCoin, enemyPosition, Quaternion.identity);
 
+        UIManager.Instance.AddKillCount();
+
         // 적 오브젝트 파괴
         Destroy(gameObject);
     }
