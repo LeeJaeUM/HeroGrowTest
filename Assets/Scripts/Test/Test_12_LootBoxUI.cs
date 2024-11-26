@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 public class Test_12_LootBoxUI : TestBase
 {
-    
+    public LootBoxUI lootBoxReward;
     protected override void OnTest1(InputAction.CallbackContext context)
     {
         GameManager.Instance.StateChange_RewardSelect(); 
@@ -19,7 +19,7 @@ public class Test_12_LootBoxUI : TestBase
     }
     protected override void OnTest4(InputAction.CallbackContext context)
     {
-        base.OnTest4(context);
+        lootBoxReward.AssignRandomValues();
     }
     protected override void OnTest5(InputAction.CallbackContext context)
     {

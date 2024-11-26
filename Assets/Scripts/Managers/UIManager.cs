@@ -5,15 +5,18 @@ public class UIManager : Singleton<UIManager>
     public GameObject mainMenuUI;
     public GameObject inGameUI;
     public GameObject pauseMenuUI;
+    public GameObject rewardSelecUI;
+    public GameObject gameoverUI;
 
     protected override void Awake()
     {
         base.Awake();  // 부모 클래스의 Awake() 호출
-        // UI 초기화
-        ShowMainMenu();
+
     }
     private void Start()
-    {
+    {        
+        // UI 초기화
+        ShowMainMenu();
         GameManager.OnGameStateChanged += HandleGameStateChanged;  // 상태 변경 이벤트 등록
     }
     private void OnDisable()
@@ -23,6 +26,7 @@ public class UIManager : Singleton<UIManager>
 
     private void HandleGameStateChanged(GameState newState)
     {
+        HideAllUI();
         // 상태에 따라 UI를 변경하는 로직
         switch (newState)
         {
@@ -30,16 +34,16 @@ public class UIManager : Singleton<UIManager>
                 ShowMainMenu();
                 break;
             case GameState.InGame:
-                ShowInGameUI();
+                ShowInGame();
                 break;
             case GameState.Paused:
                 ShowPauseMenu();
                 break;
             case GameState.RewardSelect:
-                AcquireLootBox();
+                ShowRewardSelect();
                 break;
             case GameState.GameOver:
-                //ShowGameOverScreen();
+                ShowGameover();
                 break;
             default:
                 print("현재 없는 UI 상태다");
@@ -49,20 +53,27 @@ public class UIManager : Singleton<UIManager>
 
     public void ShowMainMenu()
     {
-        HideAllUI();
         mainMenuUI.SetActive(true);
     }
 
-    public void ShowInGameUI()
+    public void ShowInGame()
     {
-        HideAllUI();
         inGameUI.SetActive(true);
     }
 
     public void ShowPauseMenu()
     {
-        HideAllUI();
         pauseMenuUI.SetActive(true);
+    }
+
+    public void ShowRewardSelect()
+    {
+        rewardSelecUI.SetActive(true);
+    }
+
+    public void ShowGameover()
+    {
+        gameoverUI.SetActive(true);
     }
 
     private void HideAllUI()
@@ -72,10 +83,4 @@ public class UIManager : Singleton<UIManager>
         pauseMenuUI.SetActive(false);
     }
 
-    public void AcquireLootBox()
-    {
-
-    }
-
-    // UI 관련 추가 메소드들...
 }

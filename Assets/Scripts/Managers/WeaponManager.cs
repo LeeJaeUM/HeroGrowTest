@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class WeaponManager : Singleton<WeaponManager>
 {
     public GameObject[] allWeapons; // 모든 무기 데이터
     public GameObject[] equippedWeapons = new GameObject[6]; // 장착된 무기
@@ -12,9 +12,9 @@ public class WeaponManager : MonoBehaviour
 
     public event Action<int> OnWeaponLevelUp;
 
-    private void Awake()
+    private void Start()
     {
-        weaponEquipped = new bool[allWeapons.Length];
+        ResetEquippedWeapons();
     }
 
     public bool AddWeapon(int weaponID)
@@ -56,6 +56,12 @@ public class WeaponManager : MonoBehaviour
         equippedWeaponsLevel[weaponID]++;
         OnWeaponLevelUp?.Invoke(weaponID);
         Debug.Log($"Weapon {weaponID} leveled up to level {equippedWeaponsLevel[weaponID]}.");
+    }
+
+    public void ResetEquippedWeapons()
+    {
+        equippedWeapons = new GameObject[6];
+        weaponEquipped = new bool[allWeapons.Length];
     }
 
 
