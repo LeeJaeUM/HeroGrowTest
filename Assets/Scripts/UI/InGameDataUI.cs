@@ -12,7 +12,7 @@ public class InGameDataUI : MonoBehaviour
     Slider expSlider;
 
     GameManager gameManager;
-    UIManager uiManager;
+    ItemManager itemManager;
 
     private void Awake()
     {
@@ -23,13 +23,13 @@ public class InGameDataUI : MonoBehaviour
         expSlider = transform.GetChild(4).GetComponent<Slider>();
 
         gameManager = GameManager.Instance;
-        uiManager = GameManager.Instance.UiManager;
+        itemManager = GameManager.Instance.ItemManager;
     }
     private void Start()
     {
-        uiManager.OnAddCoin += CoinCountUpdate;
-        uiManager.OnAddKillCount += KillCountUpdate;
-        uiManager.OnAddExp += ExpSliderUpdate;
+        itemManager.OnAddCoin += CoinCountUpdate;
+        itemManager.OnAddKillCount += KillCountUpdate;
+        itemManager.OnAddExp += ExpSliderUpdate;
     }
 
     private void Update()

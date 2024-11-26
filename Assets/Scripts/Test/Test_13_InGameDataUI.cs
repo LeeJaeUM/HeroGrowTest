@@ -10,15 +10,15 @@ public class Test_13_InGameDataUI : TestBase
     }
     protected override void OnTest2(InputAction.CallbackContext context)
     {
-        GameManager.Instance.UiManager.AcquireItem(ItemType.Coin, 10);
+        GameManager.Instance.ItemManager.AcquireItem(ItemType.Coin, 10);
     }
     protected override void OnTest3(InputAction.CallbackContext context)
     {
-        GameManager.Instance.UiManager.AddKillCount();
+        GameManager.Instance.ItemManager.AddKillCount();
     }
     protected override void OnTest4(InputAction.CallbackContext context)
     {
-        GameManager.Instance.UiManager.AddExpCount(5);
+        GameManager.Instance.ItemManager.AddExpCount(5);
     }
 
     protected override void OnTest5(InputAction.CallbackContext context)

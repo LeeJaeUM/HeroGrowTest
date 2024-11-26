@@ -57,7 +57,7 @@ public class EnemyManager : MonoBehaviour
         if(UnityEngine.Random.Range(0, 100) < expDropPercent)
             Instantiate(dropCoin, enemyPosition, Quaternion.identity);
 
-        GameManager.Instance.UiManager.AddKillCount();
+        GameManager.Instance.ItemManager.AddKillCount();
 
         // 적 오브젝트 파괴
         Destroy(gameObject);

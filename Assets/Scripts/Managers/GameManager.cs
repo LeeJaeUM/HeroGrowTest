@@ -17,6 +17,17 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    ItemManager itemManager;
+    public ItemManager ItemManager
+    {
+        get
+        {
+            if(itemManager == null)
+                itemManager = FindAnyObjectByType<ItemManager>();
+            return itemManager;
+        }
+    }
+
     StateManager stateManager;
     public StateManager StateManager
     {
