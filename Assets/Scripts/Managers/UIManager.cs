@@ -11,10 +11,6 @@ public class UIManager : MonoBehaviour
 
     [Header("Scripts")]
     public LootBoxUI lootBoxUI;
-    [SerializeField]
-   
-
-    UIManager uiManager;
 
     private void Start()
     {

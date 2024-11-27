@@ -94,8 +94,4 @@ public class SystemManager : MonoBehaviour
         }
     }
 
-    public void PlayerHpChange()
-    {
-
-    }
 }
