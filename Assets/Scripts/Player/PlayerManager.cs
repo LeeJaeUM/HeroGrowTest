@@ -17,7 +17,7 @@ public class PlayerManager : MonoBehaviour
 
     private void OnEnable()
     {
-        characterHP.onDead += Gameover;
+        characterHP.OnDead += Gameover;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -71,5 +71,16 @@ public class GameManager : Singleton<GameManager>
             return weaponManager;
         }
     }
+    
+    PlayerManager playerManager;
+    public PlayerManager PlayerManager
+    {
+        get
+        {
+            if(playerManager == null)
+                playerManager = FindAnyObjectByType<PlayerManager>();
+            return playerManager;
+        }
+    }
 
 }

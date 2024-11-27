@@ -8,13 +8,17 @@ public class InGameDataUI : MonoBehaviour
     TextMeshProUGUI getCoinTMP;
     TextMeshProUGUI killTMP;
     TextMeshProUGUI expTMP;
+    TextMeshProUGUI playerHpTMP;
 
     Slider expSlider;
+    Slider playerHpSlider;
 
     [SerializeField]
     GameManager gameManager;
     [SerializeField]
     SystemManager systemManager;
+    [SerializeField]
+    CharacterHP characterHP;
 
     private void Awake()
     {
@@ -23,6 +27,8 @@ public class InGameDataUI : MonoBehaviour
         killTMP = transform.GetChild(2).GetComponent<TextMeshProUGUI>();
         expTMP = transform.GetChild(3).GetComponent<TextMeshProUGUI>();
         expSlider = transform.GetChild(4).GetComponent<Slider>();
+        playerHpTMP = transform.GetChild(5).GetComponent<TextMeshProUGUI>();
+        playerHpSlider = transform.GetChild(6).GetComponent<Slider>();
 
         gameManager = GameManager.Instance;
         systemManager = GameManager.Instance.SystemManager;
@@ -32,6 +38,9 @@ public class InGameDataUI : MonoBehaviour
         systemManager.OnAddCoin += CoinCountUpdate;
         systemManager.OnAddKillCount += KillCountUpdate;
         systemManager.OnAddExp += ExpSliderUpdate;
+
+        characterHP = gameManager.PlayerManager.GetComponent<CharacterHP>();
+        characterHP.OnHpChange += PlayerHpUpdate;
     }
 
     private void Update()
@@ -52,5 +61,11 @@ public class InGameDataUI : MonoBehaviour
     private void ExpSliderUpdate(float percent)
     {
         expSlider.value = percent;
+    }
+
+    private void PlayerHpUpdate(float maxHp, float curHp)
+    {
+        playerHpTMP.text = curHp.ToString() + "/" + maxHp.ToString();
+        playerHpSlider.value = curHp / maxHp;
     }
 }

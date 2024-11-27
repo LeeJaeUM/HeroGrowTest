@@ -93,4 +93,9 @@ public class SystemManager : MonoBehaviour
                 break;
         }
     }
+
+    public void PlayerHpChange()
+    {
+
+    }
 }

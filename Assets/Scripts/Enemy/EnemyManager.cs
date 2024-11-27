@@ -12,12 +12,12 @@ public class EnemyManager : MonoBehaviour
     private void Start()
     {
         characterHP = GetComponent<CharacterHP>();
-        characterHP.onDead += DeadEnemy;
+        characterHP.OnDead += DeadEnemy;
     }
 
     private void OnDisable()
     {
-        characterHP.onDead -= DeadEnemy;
+        characterHP.OnDead -= DeadEnemy;
     }
 
     private void OnTriggerEnter(Collider other)
