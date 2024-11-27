@@ -11,8 +11,10 @@ public class InGameDataUI : MonoBehaviour
 
     Slider expSlider;
 
+    [SerializeField]
     GameManager gameManager;
-    ItemManager itemManager;
+    [SerializeField]
+    SystemManager systemManager;
 
     private void Awake()
     {
@@ -23,13 +25,13 @@ public class InGameDataUI : MonoBehaviour
         expSlider = transform.GetChild(4).GetComponent<Slider>();
 
         gameManager = GameManager.Instance;
-        itemManager = GameManager.Instance.ItemManager;
+        systemManager = GameManager.Instance.SystemManager;
     }
     private void Start()
     {
-        itemManager.OnAddCoin += CoinCountUpdate;
-        itemManager.OnAddKillCount += KillCountUpdate;
-        itemManager.OnAddExp += ExpSliderUpdate;
+        systemManager.OnAddCoin += CoinCountUpdate;
+        systemManager.OnAddKillCount += KillCountUpdate;
+        systemManager.OnAddExp += ExpSliderUpdate;
     }
 
     private void Update()

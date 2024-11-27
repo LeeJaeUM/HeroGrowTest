@@ -1,94 +1,57 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+public enum ItemType
+{
+    None,
+    Coin,
+    Exp,
+    Heart,
+    LootBox
+}
 
 public class ItemManager : MonoBehaviour
 {
-    private int coinCount = 0;
-    public int CoinCount
+    [System.Serializable]
+    public struct ItemPrefab
     {
-        get => coinCount;
-        private set
+        public ItemType itemType;
+        public GameObject prefab;
+    }
+
+    public ItemPrefab[] itemPrefabs;
+
+    private Dictionary<ItemType, GameObject> itemPrefabDict;
+
+    private void Awake()
+    {
+        itemPrefabDict = new Dictionary<ItemType, GameObject>();
+        foreach (var itemPrefab in itemPrefabs)
         {
-            if (coinCount != value)
-            {
-                coinCount = value;
-                OnAddCoin?.Invoke(coinCount);
-            }
+            itemPrefabDict[itemPrefab.itemType] = itemPrefab.prefab;
         }
     }
-    public event Action<int> OnAddCoin;
 
-    [SerializeField]
-    private int lootBoxCount = 0;
-
-    private int killCount = 0;
-    public int KillCount
+    public GameObject CreateItem(ItemType itemType)
     {
-        get => killCount;
-        private set
+        if (itemPrefabDict.TryGetValue(itemType, out GameObject prefab))
         {
-            if (killCount != value)
-            {
-                killCount = value;
-                OnAddKillCount?.Invoke(killCount);
-            }
-
+            return Instantiate(prefab);
+        }
+        else
+        {
+            Debug.LogError("Invalid item type!");
+            return null;
         }
     }
-    public event Action<int> OnAddKillCount;
 
-    [SerializeField]
-    public int maxExp = 20;
-    public float expPercent = 0f;
-    private int expCount = 0;
-    public int ExpCount
+    public void SpawnItem(Vector3 spawnPosition, ItemType itemType)
     {
-        get => expCount;
-        private set
+        GameObject item = CreateItem(itemType);
+        if (item != null)
         {
-            if (expCount != value)
-            {
-                expCount = value;
-                expPercent = (float)ExpCount / (float)maxExp;
-                OnAddExp?.Invoke(expPercent);
-            }
-        }
-    }
-    public event Action<float> OnAddExp;
-
-
-    public void AddCoinCount(int _amount)
-    {
-        CoinCount += _amount;
-    }
-
-    public void AddKillCount()
-    {
-        KillCount++;
-    }
-
-    public void AddExpCount(int _amount)
-    {
-        ExpCount += _amount;
-    }
-
-    public void AcquireItem(ItemType itemType, int amount)
-    {
-        switch (itemType)
-        {
-            case ItemType.Coin:
-                Debug.Log("coin 획득");
-                AddCoinCount(amount);
-                break;
-            case ItemType.LootBox:
-                Debug.Log("lootBox 획득");
-                lootBoxCount += amount;
-                GameManager.Instance.StateManager.StateChange_RewardSelect();
-                break;
-            case ItemType.Exp:
-                AddExpCount(amount);
-                Debug.Log("exp 획득");
-                break;
+            item.transform.position = spawnPosition;
         }
     }
 }

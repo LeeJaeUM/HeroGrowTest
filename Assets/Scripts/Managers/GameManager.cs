@@ -5,6 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
+    SystemManager systemManager;
+    public SystemManager SystemManager
+    {
+        get
+        {
+            if (systemManager == null)
+                systemManager = FindAnyObjectByType<SystemManager>();
+            return systemManager;
+        }
+    }
+
     InputManager inputManager;
     public InputManager InputManager
     {

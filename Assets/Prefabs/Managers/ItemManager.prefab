@@ -44,6 +44,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c23053bfdb63d247a87a567b2b3a4b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lootBoxCount: 0
-  maxExp: 20
-  expPercent: 0
+  itemPrefabs:
+  - itemType: 1
+    prefab: {fileID: 3240375764217913581, guid: 953f6c1709d3c2d40b81e0605dd5d812, type: 3}
+  - itemType: 2
+    prefab: {fileID: 3240375764217913581, guid: 4e7b7b29f2de03545866d2069324d625, type: 3}
+  - itemType: 3
+    prefab: {fileID: 7292889360903404876, guid: 56f99ab9354496c43aa6ae39c2173392, type: 3}
+  - itemType: 4
+    prefab: {fileID: 7357844251260488477, guid: bc16ac0786c97c84fb87be4d50274ee1, type: 3}

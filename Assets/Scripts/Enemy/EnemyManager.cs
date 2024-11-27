@@ -8,8 +8,6 @@ public class EnemyManager : MonoBehaviour
 
     [SerializeField]
     CharacterHP characterHP;
-    public GameObject dropCoin;
-    public GameObject dropExp;
 
     private void Start()
     {
@@ -53,11 +51,11 @@ public class EnemyManager : MonoBehaviour
         Vector3 enemyPosition = new Vector3(transform.position.x, dropItemHeight, transform.position.z);
 
         // 적의 위치에 아이템을 생성
-        Instantiate(dropExp, enemyPosition, Quaternion.identity);
+        GameManager.Instance.ItemManager.SpawnItem(enemyPosition, ItemType.Exp);
         if(UnityEngine.Random.Range(0, 100) < expDropPercent)
-            Instantiate(dropCoin, enemyPosition, Quaternion.identity);
-
-        GameManager.Instance.ItemManager.AddKillCount();
+            GameManager.Instance.ItemManager.SpawnItem(enemyPosition, ItemType.Coin);
+        
+        GameManager.Instance.SystemManager.AddKillCount();
 
         // 적 오브젝트 파괴
         Destroy(gameObject);
