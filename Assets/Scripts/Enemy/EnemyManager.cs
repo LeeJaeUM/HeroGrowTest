@@ -9,10 +9,14 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     CharacterHP characterHP;
 
+    EnemyControllerBase controller;
+
     private void Start()
     {
         characterHP = GetComponent<CharacterHP>();
         characterHP.OnDead += DeadEnemy;
+
+        controller = GetComponent<EnemyControllerBase>();
     }
 
     private void OnDisable()
@@ -57,7 +61,9 @@ public class EnemyManager : MonoBehaviour
         
         GameManager.Instance.SystemManager.AddKillCount();
 
+        controller.Death();
+
         // 적 오브젝트 파괴
-        Destroy(gameObject);
+        Destroy(gameObject,3f);
     }
 }

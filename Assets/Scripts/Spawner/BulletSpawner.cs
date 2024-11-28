@@ -15,7 +15,8 @@ public class BulletSpawner : ObjectSpawner
     private void OnEnable()
     {
         bulletSpawnPoint = transform.GetChild(0).transform;
-        StartFiring(); // 활성화 시 발사 시작
+        if (!isHostile)
+            StartFiring(); // 활성화 시 발사 시작 (플레이어의 무기만)
     }
 
     private void OnDisable()
@@ -111,6 +112,7 @@ public class BulletSpawner : ObjectSpawner
 
     public void StopFiring()
     {
+        Debug.LogWarning("Enemy가 사용 시 문제없는지 확인");
         isFiring = false;
         StopCoroutine(FireCoroutine());
     }
