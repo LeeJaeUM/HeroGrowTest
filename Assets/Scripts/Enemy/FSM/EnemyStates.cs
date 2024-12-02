@@ -5,12 +5,12 @@ public class IdleState : IState<EnemyStateHandler>
     public void Enter(EnemyStateHandler entity)
     {
         Debug.Log("Entering Idle State");
-        entity.animator.SetBool(entity.isMove_Hash, false);
+        entity.animController.SetIsMoveParameter(false);
     }
 
     public void Execute(EnemyStateHandler entity)
     {
-        Debug.Log("Executing Idle State");
+       // Debug.Log("Executing Idle State");
         if(entity.isDeath)
             entity.ChangeState(new DieState());
 
@@ -31,24 +31,24 @@ public class MoveState : IState<EnemyStateHandler>
     public void Enter(EnemyStateHandler entity)
     {
         Debug.Log("Entering Move State");
-        entity.animator.SetBool(entity.isMove_Hash, true);
+        entity.animController.SetIsMoveParameter(true);
     }
 
     public void Execute(EnemyStateHandler entity)
     {
-        Debug.Log("Executing Move State");
+       // Debug.Log("Executing Move State");
         entity.Move(); 
         
         if (entity.isDeath)
             entity.ChangeState(new DieState());
 
-        if (entity.agent.remainingDistance > entity.attackDistance)
+        if (!entity.IsAttackable())
         {
-            entity.animator.SetBool(entity.isMove_Hash, true);
+            entity.animController.SetIsMoveParameter(true);
         }
         else
         {
-            entity.animator.SetBool(entity.isMove_Hash, false); // 이동 중이 아닐 때 애니메이션 설정
+            entity.animController.SetIsMoveParameter(false); // 이동 중이 아닐 때 애니메이션 설정
             entity.ChangeState(new AttackState());
         }
 
@@ -61,7 +61,7 @@ public class MoveState : IState<EnemyStateHandler>
     public void Exit(EnemyStateHandler entity)
     {
         Debug.Log("Exiting Move State");
-        entity.animator.SetBool(entity.isMove_Hash, false);
+        entity.animController.SetIsMoveParameter(false);
     }
 }
 
@@ -76,15 +76,10 @@ public class AttackState : IState<EnemyStateHandler>
 
     public void Execute(EnemyStateHandler entity)
     {
-        Debug.Log("Executing Attack State");
+       // Debug.Log("Executing Attack State");
 
         if (entity.isDeath)
             entity.ChangeState(new DieState());
-
-        Vector3 directionToPlayer = entity.target.position - entity.transform.position;
-        directionToPlayer.y = 0; // 높이 차이는 무시
-
-        float distanceToPlayer = directionToPlayer.magnitude;
 
         entity.curAttackDelay += Time.deltaTime;
         if(entity.curAttackDelay > entity.attackDelay)
@@ -93,7 +88,7 @@ public class AttackState : IState<EnemyStateHandler>
             entity.curAttackDelay = 0;
         }
 
-        if (distanceToPlayer > entity.attackDistance)
+        if (entity.GetDistanceToPlayer() > entity.attackDistance)
         {
             entity.ChangeState(new MoveState());
         }

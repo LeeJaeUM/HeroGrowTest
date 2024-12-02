@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class RangeEnemyController : EnemyControllerBase
 {
-    public float followDistance = 6f;
+    public float attackDistance = 6f;
     BulletSpawner bulletSpawner;
     public float rotationSpeed = 18f;
     public float rotationTime = 0.4f;
@@ -29,14 +29,9 @@ public class RangeEnemyController : EnemyControllerBase
     }
     protected override void Move()
     {
-        if (target != null)
-        {
-            Vector3 directionToPlayer = target.position - transform.position;
-            directionToPlayer.y = 0; // 높이 차이는 무시
-
-            float distanceToPlayer = directionToPlayer.magnitude;
-            float distanceDifference = followDistance - distanceToPlayer;
-            TESTDISTANCE = distanceDifference;
+        //if (target != null)
+        //{
+            float distanceDifference = GetDistanceToPlayer();
 
             if (distanceDifference <= 0)
             {
@@ -51,17 +46,24 @@ public class RangeEnemyController : EnemyControllerBase
             }
             else
             {
-                Vector3 awayPosition = target.position - directionToPlayer.normalized * followDistance;
+                Vector3 awayPosition = target.position - GetDirectionToPlayer().normalized * attackDistance;
                 agent.SetDestination(awayPosition);
                 animator.SetBool(isMove_Hash, true); // 가까워졌을 때도 이동 중 애니메이션 설정
                 Attack();
             }
-        }
-        else
-        {
-            animator.SetBool(isMove_Hash, false); // 목표가 없을 때 애니메이션 설정
-        }
+        //}
+        //else
+        //{
+        //    animator.SetBool(isMove_Hash, false); // 목표가 없을 때 애니메이션 설정
+        //}
     }
+
+    bool IsAttackable()
+    {
+
+        return false;
+    }
+
 
     protected override IEnumerator StartAttack()
     {
@@ -80,5 +82,22 @@ public class RangeEnemyController : EnemyControllerBase
         Vector3 direction = (targetPosition - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+    }
+
+    public virtual float GetDistanceToPlayer()
+    {
+        Vector3 directionToPlayer = GetDirectionToPlayer();
+
+        float distanceToPlayer = directionToPlayer.magnitude;
+        float result = attackDistance - distanceToPlayer;
+
+        return result;
+    }
+
+    public Vector3 GetDirectionToPlayer()
+    {
+        Vector3 directionToPlayer = target.position - transform.position;
+        directionToPlayer.y = 0; // 높이 차이는 무시
+        return directionToPlayer;
     }
 }

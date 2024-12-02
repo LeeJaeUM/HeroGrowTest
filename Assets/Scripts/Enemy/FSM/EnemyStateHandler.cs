@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public class EnemyStateHandler : FSM<EnemyStateHandler>
+public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
 {
     public float moveSpeed = 3.0f;
     public Transform target; // 플레이어의 트랜스폼
@@ -16,18 +16,11 @@ public class EnemyStateHandler : FSM<EnemyStateHandler>
     public float TestDIStance = 0;
 
     [HideInInspector]
-    public int isMove_Hash = Animator.StringToHash("isMove");
-    [HideInInspector]
-    public int Attack_Hash = Animator.StringToHash("Attack");
-    [HideInInspector]
-    protected int Death_Hash = Animator.StringToHash("Death");
-
-    [HideInInspector]
     public NavMeshAgent agent;
     [HideInInspector]
-    public Animator animator;
+    public EnemyAnimationController animController;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Initialize();
     }
@@ -49,22 +42,36 @@ public class EnemyStateHandler : FSM<EnemyStateHandler>
         FSMUpdate();
     }
 
-    private void Initialize()
+    protected virtual void Initialize()
     {
-        animator = GetComponent<Animator>();
+        animController = GetComponent<EnemyAnimationController>();
         agent = GetComponent<NavMeshAgent>(); // NavMeshAgent 컴포넌트 가져오기
         agent.speed = moveSpeed;
     }
 
     // 행동에 따른 메서드 추가
-    public void Move()
+    public abstract void Move();
+    public virtual void Attack()
     {
-        agent.SetDestination(target.position); // 플레이어의 위치로 이동
-    }
 
-    public void Attack()
+        animController.AttackAnim();
+    }
+    public abstract bool IsAttackable();
+
+    public float GetDistanceToPlayer()
     {
-        animator.SetTrigger(Attack_Hash);
+        Vector3 directionToPlayer = GetDirectionToPlayer();
+
+        float distanceToPlayer = directionToPlayer.magnitude;
+        float result = attackDistance - distanceToPlayer;
+
+        return result;
+    }
+    public Vector3 GetDirectionToPlayer()
+    {
+        Vector3 directionToPlayer = target.position - transform.position;
+        directionToPlayer.y = 0; // 높이 차이는 무시
+        return directionToPlayer;
     }
 
     public void SetTarget()
@@ -88,10 +95,11 @@ public class EnemyStateHandler : FSM<EnemyStateHandler>
 
     public void Death()
     {
-        isDeath = true;
-        animator.SetTrigger(Death_Hash);
+        //isDeath = true;
+        animController.DeathAnim();
         agent.ResetPath();
         agent.speed = 0;
     }
+
 
 }

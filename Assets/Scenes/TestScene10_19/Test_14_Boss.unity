@@ -1503,9 +1503,10 @@ GameObject:
   - component: {fileID: 8253602754766979807}
   - component: {fileID: 1257665619822048489}
   - component: {fileID: 5128899095395328333}
+  - component: {fileID: 8253602754766979809}
+  - component: {fileID: 8253602754766979808}
   - component: {fileID: 8175961101218856672}
   - component: {fileID: 1007840247343216802}
-  - component: {fileID: 8253602754766979808}
   - component: {fileID: 2751806773646930579}
   m_Layer: 7
   m_Name: Enemy_FSMver
@@ -1513,7 +1514,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!54 &688341367339882774
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1636,17 +1637,18 @@ GameObject:
   - component: {fileID: 688341367339882774}
   - component: {fileID: 7192449978933593294}
   - component: {fileID: 301461980842904921}
-  - component: {fileID: 5470556900647881701}
   - component: {fileID: 211207777549150861}
   - component: {fileID: 6616536448917085966}
   - component: {fileID: 3805792867711588246}
+  - component: {fileID: 8663220697205697497}
+  - component: {fileID: 8663220697205697496}
   m_Layer: 7
   m_Name: Enemy_RangeAttack
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!33 &1986479437461289642
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2043,28 +2045,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 400012, guid: 6520c6d7889f4c72b416f07f34edd515, type: 3}
   m_PrefabInstance: {fileID: 5157864193866737962}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5470556900647881701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1860086432995088324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f15aa1407ac72024a8a20d6f3cb8f7d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  attackDelay: 2
-  curAttackDelay: 0
-  isAttacking: 0
-  isDeath: 0
-  followDistance: 6
-  rotationSpeed: 18
-  rotationTime: 0.4
-  canAttackRotate: 1
-  TESTDISTANCE: 0
 --- !u!114 &6616536448917085966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2169,18 +2149,30 @@ MonoBehaviour:
   m_GameObject: {fileID: 449030441535630125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 393774e4fb922ca4d9dc87c54906f2a3, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b54542eee72714469d9c0aa0f17a159, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3
   target: {fileID: 0}
   attackDelay: 2
   curAttackDelay: 0
+  attackDistance: 0.5
   isDeath: 0
   TestDIStance: 0
-  isMove_Hash: 1308828276
-  Attack_Hash: 1080829965
   agent: {fileID: 0}
+  animController: {fileID: 0}
+--- !u!114 &8253602754766979809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 449030441535630125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc21e49b6c3a3b448a231f48f51f255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   animator: {fileID: 0}
 --- !u!33 &8663220697205697495
 MeshFilter:
@@ -2190,6 +2182,44 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1860086432995088324}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &8663220697205697496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860086432995088324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49a3850dbe4cd424dbfc0cbf7777c9e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  target: {fileID: 0}
+  attackDelay: 2
+  curAttackDelay: 0
+  attackDistance: 0.5
+  isDeath: 0
+  TestDIStance: 0
+  agent: {fileID: 0}
+  animController: {fileID: 0}
+  followDistance: 6
+  rotationSpeed: 18
+  rotationTime: 0.4
+  canAttackRotate: 1
+--- !u!114 &8663220697205697497
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1860086432995088324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc21e49b6c3a3b448a231f48f51f255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
 --- !u!1001 &8935426610573435930
 PrefabInstance:
   m_ObjectHideFlags: 0
