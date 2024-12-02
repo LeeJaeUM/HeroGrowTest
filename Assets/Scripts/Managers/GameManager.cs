@@ -39,13 +39,13 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    StateManager stateManager;
-    public StateManager StateManager
+    SceneStateManager stateManager;
+    public SceneStateManager StateManager
     {
         get
         {
             if(stateManager == null)
-                stateManager = FindAnyObjectByType<StateManager>();
+                stateManager = FindAnyObjectByType<SceneStateManager>();
             return stateManager;
         }
     }

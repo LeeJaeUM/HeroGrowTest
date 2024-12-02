@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StateManager : MonoBehaviour
+public class SceneStateManager : MonoBehaviour
 {
     readonly int Scene_Title_Hash = Animator.StringToHash("01_Title");
     readonly int Scene_Lobby_Hash = Animator.StringToHash("02_Lobby");
