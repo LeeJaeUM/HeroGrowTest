@@ -72,3 +72,12 @@ exp는 게임플레이 내에서만 레벨업에 사용될 재화
 커플링매니저에서 
 
 start함수에서 연결을 
+
+
+----
+공격패턴을 관리하는 클래스를
+부모 StateHandler에게 부착후
+자식들에서 개별 구현
+
+MoveState를 patrol과 chase state로 구분
+뱀서에선 거의 같기에 move하나만 사용 중

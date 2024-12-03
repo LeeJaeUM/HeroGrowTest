@@ -19,6 +19,8 @@ public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
     public NavMeshAgent agent;
     [HideInInspector]
     public EnemyAnimationController animController;
+    [HideInInspector]
+    public EnemyAttackPatternController attackPatternController;
 
     protected virtual void Awake()
     {
@@ -47,6 +49,7 @@ public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
         animController = GetComponent<EnemyAnimationController>();
         agent = GetComponent<NavMeshAgent>(); // NavMeshAgent 컴포넌트 가져오기
         agent.speed = moveSpeed;
+        attackPatternController = GetComponent<EnemyAttackPatternController>();
     }
 
     // 행동에 따른 메서드 추가
@@ -57,10 +60,9 @@ public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
     }
     public abstract bool IsAttackable();
 
-    public virtual void AttackingAction()
-    {
+    public virtual void AttackingAction() { }
 
-    }
+    public virtual bool IsPatternMove() { return false; }
 
     public float GetDistanceToPlayer()
     {

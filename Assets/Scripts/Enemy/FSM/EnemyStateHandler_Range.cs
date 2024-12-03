@@ -7,6 +7,7 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
     public float rotationSpeed = 18f;
     public float rotationTime = 0.4f;
     public float noRunDistance = 2f;
+    private float bulletDelay = 0.2f;
 
     public float TESTDIS = 0;
 
@@ -25,9 +26,7 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
         else
         {
             //도망칠 때는 공격 쿨타임 돌아감
-            curAttackDelay += Time.deltaTime;
-            Vector3 awayPosition = target.position - GetDirectionToPlayer().normalized * attackDistance * 2;
-            agent.SetDestination(awayPosition);
+            RunAwayFromPlayer();
         }
     }
     public override void Attack()
@@ -75,9 +74,16 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
     }
 
+    public void RunAwayFromPlayer()
+    {
+        curAttackDelay += Time.deltaTime;
+        Vector3 awayPosition = target.position - GetDirectionToPlayer().normalized * attackDistance * 2;
+        agent.SetDestination(awayPosition);
+    }
+
     private IEnumerator DelayedBulletSpawn()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(bulletDelay);
         bulletSpawner.SpawnObject();
     }
 

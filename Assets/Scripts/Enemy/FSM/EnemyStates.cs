@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class IdleState : IState<EnemyStateHandler>
+public class IdleState : FSMSingleton<IdleState>, IState<EnemyStateHandler>
 {
     public void Enter(EnemyStateHandler entity)
     {
@@ -12,11 +12,11 @@ public class IdleState : IState<EnemyStateHandler>
     {
        // Debug.Log("Executing Idle State");
         if(entity.isDeath)
-            entity.ChangeState(new DieState());
+            entity.ChangeState(DieState.Instance);
 
         if (entity.target != null)
         {
-            entity.ChangeState(new MoveState());
+            entity.ChangeState(ChaseState.Instance);
         }
     }
 
@@ -26,7 +26,7 @@ public class IdleState : IState<EnemyStateHandler>
     }
 }
 
-public class MoveState : IState<EnemyStateHandler>
+public class ChaseState : FSMSingleton<ChaseState>,IState<EnemyStateHandler>
 {
     public void Enter(EnemyStateHandler entity)
     {
@@ -40,22 +40,27 @@ public class MoveState : IState<EnemyStateHandler>
         entity.Move(); 
         
         if (entity.isDeath)
-            entity.ChangeState(new DieState());
+            entity.ChangeState(DieState.Instance);
 
         if (entity.IsAttackable())
         {
             entity.animController.SetIsMoveParameter(false);
-            entity.ChangeState(new AttackState());
+            entity.ChangeState(AttackState.Instance);
         }
         else
         {
             entity.animController.SetIsMoveParameter(true);
         }
 
+        if(entity.IsPatternMove())
+        {
+            entity.ChangeState(PatternMoveState.Instance);
+        }
+
         //플레이어 소멸
         if (entity.target == null)
         {
-            entity.ChangeState(new IdleState());
+            entity.ChangeState(IdleState.Instance);
         }
     }
 
@@ -66,7 +71,27 @@ public class MoveState : IState<EnemyStateHandler>
     }
 }
 
-public class AttackState : IState<EnemyStateHandler>
+public class PatternMoveState : FSMSingleton<PatternMoveState>, IState<EnemyStateHandler>
+{
+    public void Enter(EnemyStateHandler entity)
+    {
+
+    }
+
+    public void Execute(EnemyStateHandler entity)
+    {
+        if (!entity.IsPatternMove())
+        {
+            entity.ChangeState(ChaseState.Instance);
+        }
+    }
+
+    public void Exit(EnemyStateHandler entity)
+    {
+    }
+}
+
+public class AttackState : FSMSingleton<AttackState>, IState<EnemyStateHandler>
 {
     public void Enter(EnemyStateHandler entity)
     {
@@ -80,7 +105,7 @@ public class AttackState : IState<EnemyStateHandler>
         entity.AttackingAction();
 
         if (entity.isDeath)
-            entity.ChangeState(new DieState());
+            entity.ChangeState(DieState.Instance);
 
         entity.curAttackDelay += Time.deltaTime;
         if(entity.curAttackDelay > entity.attackDelay)
@@ -93,9 +118,17 @@ public class AttackState : IState<EnemyStateHandler>
         //
         if (!entity.IsAttackable())
         {
-            entity.ChangeState(new MoveState());
+            entity.ChangeState(ChaseState.Instance);
+        }
+        if (entity.IsPatternMove())
+        {
+            entity.ChangeState(PatternMoveState.Instance);
         }
 
+        if (entity.IsPatternMove())
+        {
+            entity.ChangeState(PatternMoveState.Instance);
+        }
     }
 
     public void Exit(EnemyStateHandler entity)
@@ -104,7 +137,7 @@ public class AttackState : IState<EnemyStateHandler>
     }
 }
 
-public class DieState : IState<EnemyStateHandler>
+public class DieState : FSMSingleton<DieState>, IState<EnemyStateHandler>
 {
     public void Enter(EnemyStateHandler entity)
     {
