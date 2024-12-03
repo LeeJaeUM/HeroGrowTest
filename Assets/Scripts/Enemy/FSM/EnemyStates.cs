@@ -42,16 +42,17 @@ public class MoveState : IState<EnemyStateHandler>
         if (entity.isDeath)
             entity.ChangeState(new DieState());
 
-        if (!entity.IsAttackable())
+        if (entity.IsAttackable())
         {
-            entity.animController.SetIsMoveParameter(true);
+            entity.animController.SetIsMoveParameter(false);
+            entity.ChangeState(new AttackState());
         }
         else
         {
-            entity.animController.SetIsMoveParameter(false); // 이동 중이 아닐 때 애니메이션 설정
-            entity.ChangeState(new AttackState());
+            entity.animController.SetIsMoveParameter(true);
         }
 
+        //플레이어 소멸
         if (entity.target == null)
         {
             entity.ChangeState(new IdleState());
@@ -70,13 +71,13 @@ public class AttackState : IState<EnemyStateHandler>
     public void Enter(EnemyStateHandler entity)
     {
         Debug.Log("Entering Attack State");
-        entity.Attack();
-        entity.curAttackDelay = 0;
     }
 
     public void Execute(EnemyStateHandler entity)
     {
        // Debug.Log("Executing Attack State");
+
+        entity.AttackingAction();
 
         if (entity.isDeath)
             entity.ChangeState(new DieState());
@@ -88,7 +89,9 @@ public class AttackState : IState<EnemyStateHandler>
             entity.curAttackDelay = 0;
         }
 
-        if (entity.GetDistanceToPlayer() > entity.attackDistance)
+        //현재 단순계산기능 - 공격거리보다 멀어지면 move로 변경
+        //
+        if (!entity.IsAttackable())
         {
             entity.ChangeState(new MoveState());
         }

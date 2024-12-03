@@ -16,7 +16,7 @@ public class EnemyStateHandler_Meele : EnemyStateHandler, IAction
     public override bool IsAttackable()
     {
         Debug.Log($"meele에서 공격가능한지 체크 함");
-        bool result = agent.remainingDistance < attackDistance;
+        bool result = GetDistanceToPlayer() < attackDistance;
         return result;
     }
 

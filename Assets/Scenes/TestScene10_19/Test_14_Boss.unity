@@ -2158,7 +2158,7 @@ MonoBehaviour:
   curAttackDelay: 0
   attackDistance: 0.5
   isDeath: 0
-  TestDIStance: 0
+  isMoveToPlayer: 1
   agent: {fileID: 0}
   animController: {fileID: 0}
 --- !u!114 &8253602754766979809
@@ -2198,15 +2198,15 @@ MonoBehaviour:
   target: {fileID: 0}
   attackDelay: 2
   curAttackDelay: 0
-  attackDistance: 0.5
+  attackDistance: 8
   isDeath: 0
-  TestDIStance: 0
+  isMoveToPlayer: 1
   agent: {fileID: 0}
   animController: {fileID: 0}
-  followDistance: 6
   rotationSpeed: 18
   rotationTime: 0.4
-  canAttackRotate: 1
+  noRunDistance: 4
+  TESTDIS: 0
 --- !u!114 &8663220697205697497
 MonoBehaviour:
   m_ObjectHideFlags: 0

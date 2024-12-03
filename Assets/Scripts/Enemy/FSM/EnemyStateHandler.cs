@@ -12,8 +12,8 @@ public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
     public float curAttackDelay = 0;
     public float attackDistance = 0.5f;
     public bool isDeath = false;
+    public bool isMoveToPlayer = true;
 
-    public float TestDIStance = 0;
 
     [HideInInspector]
     public NavMeshAgent agent;
@@ -53,17 +53,21 @@ public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
     public abstract void Move();
     public virtual void Attack()
     {
-
         animController.AttackAnim();
     }
     public abstract bool IsAttackable();
+
+    public virtual void AttackingAction()
+    {
+
+    }
 
     public float GetDistanceToPlayer()
     {
         Vector3 directionToPlayer = GetDirectionToPlayer();
 
         float distanceToPlayer = directionToPlayer.magnitude;
-        float result = attackDistance - distanceToPlayer;
+        float result = distanceToPlayer;
 
         return result;
     }
