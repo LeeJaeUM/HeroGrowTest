@@ -19,15 +19,13 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
 
     public override void Move()
     {
-        if (isMoveToPlayer)
-        {
-            agent.SetDestination(target.position);
-        }
-        else
-        {
-            //도망칠 때는 공격 쿨타임 돌아감
-            RunAwayFromPlayer();
-        }
+        agent.SetDestination(target.position);
+    }
+
+    public override void PatternMove()
+    {
+        curAttackDelay += Time.deltaTime;
+        RunAwayFromPlayer();
     }
     public override void Attack()
     {
@@ -35,35 +33,10 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
         StartCoroutine(DelayedBulletSpawn());
     }
 
-    public override bool IsAttackable()
-    {
-        bool result = false;
-
-        float distanceDifference = attackDistance - GetDistanceToPlayer();
-        TESTDIS = distanceDifference;
-        if (distanceDifference <= 0)    //멀때
-        {
-            isMoveToPlayer = true;
-            result = false;
-        }
-        else if (distanceDifference <= noRunDistance)    //공격범위내
-        {
-            Debug.Log("공격가능거리임");
-            isMoveToPlayer = true;
-            result = true;
-            agent.ResetPath();
-        }
-        else
-        {
-            isMoveToPlayer = false;     //너무 가까울때
-            result = false;
-        }
-
-        return result;
-    }
-
     public override void AttackingAction()
     {
+        base.AttackingAction(); 
+
         RotateTowards(target.position);
     }
 
@@ -76,7 +49,6 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
 
     public void RunAwayFromPlayer()
     {
-        curAttackDelay += Time.deltaTime;
         Vector3 awayPosition = target.position - GetDirectionToPlayer().normalized * attackDistance * 2;
         agent.SetDestination(awayPosition);
     }
@@ -86,5 +58,60 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
         yield return new WaitForSeconds(bulletDelay);
         bulletSpawner.SpawnObject();
     }
+
+    #region IsFunction
+
+    public override bool IsAttackable()
+    {
+        bool result = false;
+
+        float distanceDifference = attackDistance - GetDistanceToPlayer();
+        TESTDIS = distanceDifference;
+        if (distanceDifference <= 0)        //멀때
+        {
+            canAttack = false;
+        }
+        else if (distanceDifference <= noRunDistance)    //공격범위내
+        {
+            canAttack = true;
+            agent.ResetPath();
+        }
+        else
+        {
+            canAttack = true;                 //너무 가까울때
+        }
+
+        result = canAttack;
+        return result;
+    }
+
+    public override bool IsChaseable()
+    {
+        bool result = false;
+
+        float distanceDifference = attackDistance - GetDistanceToPlayer();
+        TESTDIS = distanceDifference;
+        if (distanceDifference <= noRunDistance)    //멀때//공격범위내
+        {
+            isChase = true;
+        }
+        else
+        {
+            isChase = false;     //너무 가까울때
+        }
+        result = isChase;
+        return result;
+    }
+
+    public override bool IsPatternMoveable()
+    {
+        bool result = false;
+        if (!isChase && curAttackDelay < attackDelay)
+            canPatternMove = true;
+
+        result = canPatternMove;
+        return result;
+    }
+    #endregion
 
 }
