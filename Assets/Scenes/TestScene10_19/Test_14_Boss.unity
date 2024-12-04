@@ -1383,6 +1383,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Range
       objectReference: {fileID: 0}
+    - target: {fileID: 1071495906832932421, guid: c2bed9067115e0740b0f3eb958e9ec95, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2956590591417562588, guid: c2bed9067115e0740b0f3eb958e9ec95, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.82
@@ -1494,8 +1498,8 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6556035151519578147}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 6520c6d7889f4c72b416f07f34edd515, type: 3}
-  m_Controller: {fileID: 22100000, guid: 13f5e0396dd224c4bb4ad844a9c8a57c, type: 2}
+  m_Avatar: {fileID: 9000000, guid: 599b2dc9e6c44a8ebc02ddea1f18d215, type: 3}
+  m_Controller: {fileID: 9100000, guid: 584b3d7a42960014cbf3904e3691fe29, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1677,33 +1681,6 @@ MonoBehaviour:
   dropItemHeight: 0.9
   expDropPercent: 30
   characterHP: {fileID: 0}
---- !u!114 &4220674055188052319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6556035151519578147}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49a3850dbe4cd424dbfc0cbf7777c9e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  target: {fileID: 0}
-  attackDelay: 2
-  curAttackDelay: 0
-  attackDistance: 8
-  isDeath: 0
-  canChase: 1
-  canAttack: 0
-  canPatternMove: 0
-  TESTDIS: 0
-  agent: {fileID: 0}
-  animController: {fileID: 0}
-  rotationSpeed: 18
-  rotationTime: 0.4
-  noRunDistance: 4
 --- !u!195 &6408167311480293801
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1742,14 +1719,15 @@ GameObject:
   - component: {fileID: 7283460763207453636}
   - component: {fileID: 653928106457708188}
   - component: {fileID: 1116929706825397902}
-  - component: {fileID: 4220674055188052319}
+  - component: {fileID: 9017028475973211067}
+  - component: {fileID: 9017028475973211068}
   m_Layer: 7
   m_Name: Enemy_Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1001 &7015467117519113443
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1882,6 +1860,53 @@ Transform:
   - {fileID: 365288106}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9017028475973211067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6556035151519578147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 116c035bd85034347aa8ca668ed8b4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 3
+  target: {fileID: 0}
+  attackDelay: 2
+  curAttackDelay: 0
+  attackDistance: 5
+  isDeath: 0
+  canChase: 1
+  canAttack: 0
+  canPatternMove: 0
+  isPatternMoving: 0
+  isTargetToPlayer: 1
+  TESTDIS: 0
+  agent: {fileID: 0}
+  animController: {fileID: 0}
+--- !u!114 &9017028475973211068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6556035151519578147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf7db62f28df84449f58a5c537bee00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDelay: 3
+  curAttackDelay: 0
+  attackDistance: 9
+  curPatternIndex: 0
+  maxPatternIndex: 1
+  dashDistance: 10
+  dashSpeed: 6
+  canAttack: 0
+  target: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

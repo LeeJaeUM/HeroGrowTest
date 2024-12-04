@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnemyAnimationController : MonoBehaviour
 {
-    private int isMove_Hash = Animator.StringToHash("isMove");
-    private int Attack_Hash = Animator.StringToHash("Attack");
-    private int Death_Hash = Animator.StringToHash("Death");
+    protected int isMove_Hash = Animator.StringToHash("isMove");
+    protected int Attack_Hash = Animator.StringToHash("Attack");
+    protected int Death_Hash = Animator.StringToHash("Death");
 
     public Animator animator;
 

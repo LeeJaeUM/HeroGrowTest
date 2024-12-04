@@ -38,6 +38,11 @@ public class Enemy_Range : EnemyBase
         RotateTowards(target.position);
         agent.ResetPath();
     }
+    private IEnumerator DelayedBulletSpawn()
+    {
+        yield return new WaitForSeconds(bulletDelay);
+        bulletSpawner.SpawnObject();
+    }
 
     public void RotateTowards(Vector3 targetPosition)
     {
@@ -52,44 +57,13 @@ public class Enemy_Range : EnemyBase
         agent.SetDestination(awayPosition);
     }
 
-    private IEnumerator DelayedBulletSpawn()
-    {
-        yield return new WaitForSeconds(bulletDelay);
-        bulletSpawner.SpawnObject();
-    }
+    //public override void PatternMoveEnter()
+    //{
+    //    base.PatternMoveEnter();
+    //    isPatternMoving = true;
+    //}
 
     #region IsFunction
-
-    public override bool IsAttackable()
-    {
-        bool result = false;
-
-        if (GetDistanceToPlayer() > attackDistance)//멀때
-        {
-            canAttack = false;
-        }
-        else
-        {
-            canAttack = true;
-        }
-        result = canAttack;
-        return result;
-    }
-
-    public override bool IsChaseable()
-    {
-        bool result = false;
-        if(GetDistanceToPlayer() > attackDistance)//멀때
-        {
-            canChase = true;
-        }
-        else
-        {
-            canChase = false;
-        }
-        result = canChase;
-        return result;
-    }
 
     public override bool IsPatternMoveable()
     {

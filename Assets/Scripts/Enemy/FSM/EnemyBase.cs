@@ -15,6 +15,8 @@ public class EnemyBase : FSM<EnemyBase>, IAction
     public bool canChase = true;
     public bool canAttack = false;
     public bool canPatternMove = false;
+    public bool isPatternMoving = false;
+    public bool isTargetToPlayer = true;
     
     public float TESTDIS = 0;
 
@@ -63,8 +65,6 @@ public class EnemyBase : FSM<EnemyBase>, IAction
     {
         animController.AttackAnim();
     }
-    public virtual bool IsAttackable() { return false; }
-
     public virtual void AttackingAction()
     {
         curAttackDelay += Time.deltaTime;
@@ -75,8 +75,20 @@ public class EnemyBase : FSM<EnemyBase>, IAction
         }
     }
 
-    public virtual bool IsChaseable() { return false; }
 
+    public virtual bool IsAttackable()
+    {
+        bool result = GetDistanceToPlayer() < attackDistance;
+        canAttack = result;
+        return result;
+    }
+
+    public virtual bool IsChaseable()
+    {
+        bool result = GetDistanceToPlayer() >= attackDistance;
+        canChase = result;
+        return result;
+    }
     public virtual bool IsPatternMoveable() { return false; }
 
     public virtual void PatternMove() { }
@@ -97,7 +109,7 @@ public class EnemyBase : FSM<EnemyBase>, IAction
         return directionToPlayer;
     }
 
-    public void SetTarget()
+    public virtual void SetTarget()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
@@ -123,6 +135,19 @@ public class EnemyBase : FSM<EnemyBase>, IAction
         agent.ResetPath();
         agent.speed = 0;
     }
+    public virtual void AttackEnter() { }
 
+    public virtual void AttackExit() { }
+    public virtual void PatternMoveEnter()
+    {
+        animController.SetIsMoveParameter(true);
+        isTargetToPlayer = false;
+        SetTarget();
+    }
 
+    public virtual void PatternMoveExit()
+    {
+        animController.SetIsMoveParameter(false);
+        isTargetToPlayer = true;
+    }
 }

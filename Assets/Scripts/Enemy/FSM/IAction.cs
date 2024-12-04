@@ -7,4 +7,10 @@ public interface IAction
     public bool IsChaseable();
 
     public bool IsPatternMoveable();
+
+    public void AttackEnter();
+    public void AttackExit();
+
+    public void PatternMoveEnter();
+    public void PatternMoveExit();
 }

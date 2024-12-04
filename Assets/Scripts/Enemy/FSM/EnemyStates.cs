@@ -70,7 +70,7 @@ public class PatternMoveState : FSMSingleton<PatternMoveState>, IState<EnemyBase
 {
     public void Enter(EnemyBase entity)
     {
-        entity.animController.SetIsMoveParameter(true);
+        entity.PatternMoveEnter();
         Debug.Log("Entering PatternMoveState");
     }
 
@@ -78,6 +78,10 @@ public class PatternMoveState : FSMSingleton<PatternMoveState>, IState<EnemyBase
     {
         entity.PatternMove();
         //특수무브가 끝나면 Chase로 변경
+        if (entity.IsAttackable())
+        {
+            entity.ChangeState(AttackState.Instance);
+        }
         if (!entity.IsPatternMoveable())
         {
             entity.ChangeState(ChaseState.Instance);
@@ -86,7 +90,7 @@ public class PatternMoveState : FSMSingleton<PatternMoveState>, IState<EnemyBase
 
     public void Exit(EnemyBase entity)
     {
-        entity.animController.SetIsMoveParameter(false);
+        entity.PatternMoveExit();   
     }
 }
 
@@ -95,6 +99,7 @@ public class AttackState : FSMSingleton<AttackState>, IState<EnemyBase>
     public void Enter(EnemyBase entity)
     {
         Debug.Log("Entering Attack State");
+        entity.AttackEnter();
     }
 
     public void Execute(EnemyBase entity)
@@ -122,6 +127,7 @@ public class AttackState : FSMSingleton<AttackState>, IState<EnemyBase>
     public void Exit(EnemyBase entity)
     {
         Debug.Log("Exiting Attack State");
+        entity.AttackExit();
     }
 }
 
