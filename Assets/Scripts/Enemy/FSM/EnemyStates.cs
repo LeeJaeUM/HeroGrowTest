@@ -1,14 +1,14 @@
 using UnityEngine;
 
-public class IdleState : FSMSingleton<IdleState>, IState<EnemyStateHandler>
+public class IdleState : FSMSingleton<IdleState>, IState<EnemyBase>
 {
-    public void Enter(EnemyStateHandler entity)
+    public void Enter(EnemyBase entity)
     {
         Debug.Log("Entering Idle State");
         entity.animController.SetIsMoveParameter(false);
     }
 
-    public void Execute(EnemyStateHandler entity)
+    public void Execute(EnemyBase entity)
     {
        // Debug.Log("Executing Idle State");
         if(entity.isDeath)
@@ -20,21 +20,21 @@ public class IdleState : FSMSingleton<IdleState>, IState<EnemyStateHandler>
         }
     }
 
-    public void Exit(EnemyStateHandler entity)
+    public void Exit(EnemyBase entity)
     {
         Debug.Log("Exiting Idle State");
     }
 }
 
-public class ChaseState : FSMSingleton<ChaseState>,IState<EnemyStateHandler>
+public class ChaseState : FSMSingleton<ChaseState>,IState<EnemyBase>
 {
-    public void Enter(EnemyStateHandler entity)
+    public void Enter(EnemyBase entity)
     {
         Debug.Log("Entering Move State");
         entity.animController.SetIsMoveParameter(true);
     }
 
-    public void Execute(EnemyStateHandler entity)
+    public void Execute(EnemyBase entity)
     {
        // Debug.Log("Executing Move State");
         entity.Move(); 
@@ -59,22 +59,22 @@ public class ChaseState : FSMSingleton<ChaseState>,IState<EnemyStateHandler>
         }
     }
 
-    public void Exit(EnemyStateHandler entity)
+    public void Exit(EnemyBase entity)
     {
         Debug.Log("Exiting Move State");
         entity.animController.SetIsMoveParameter(false);
     }
 }
 
-public class PatternMoveState : FSMSingleton<PatternMoveState>, IState<EnemyStateHandler>
+public class PatternMoveState : FSMSingleton<PatternMoveState>, IState<EnemyBase>
 {
-    public void Enter(EnemyStateHandler entity)
+    public void Enter(EnemyBase entity)
     {
         entity.animController.SetIsMoveParameter(true);
         Debug.Log("Entering PatternMoveState");
     }
 
-    public void Execute(EnemyStateHandler entity)
+    public void Execute(EnemyBase entity)
     {
         entity.PatternMove();
         //특수무브가 끝나면 Chase로 변경
@@ -84,20 +84,20 @@ public class PatternMoveState : FSMSingleton<PatternMoveState>, IState<EnemyStat
         }
     }
 
-    public void Exit(EnemyStateHandler entity)
+    public void Exit(EnemyBase entity)
     {
         entity.animController.SetIsMoveParameter(false);
     }
 }
 
-public class AttackState : FSMSingleton<AttackState>, IState<EnemyStateHandler>
+public class AttackState : FSMSingleton<AttackState>, IState<EnemyBase>
 {
-    public void Enter(EnemyStateHandler entity)
+    public void Enter(EnemyBase entity)
     {
         Debug.Log("Entering Attack State");
     }
 
-    public void Execute(EnemyStateHandler entity)
+    public void Execute(EnemyBase entity)
     {
        // Debug.Log("Executing Attack State");
 
@@ -109,7 +109,7 @@ public class AttackState : FSMSingleton<AttackState>, IState<EnemyStateHandler>
 
         //현재 단순계산기능 - 공격거리보다 멀어지면 move로 변경
         //
-        if (!entity.IsAttackable())
+        if (entity.IsChaseable())
         {
             entity.ChangeState(ChaseState.Instance);
         }
@@ -119,26 +119,26 @@ public class AttackState : FSMSingleton<AttackState>, IState<EnemyStateHandler>
         }
     }
 
-    public void Exit(EnemyStateHandler entity)
+    public void Exit(EnemyBase entity)
     {
         Debug.Log("Exiting Attack State");
     }
 }
 
-public class DieState : FSMSingleton<DieState>, IState<EnemyStateHandler>
+public class DieState : FSMSingleton<DieState>, IState<EnemyBase>
 {
-    public void Enter(EnemyStateHandler entity)
+    public void Enter(EnemyBase entity)
     {
         Debug.Log("Entering Die State");
         entity.Death();
     }
 
-    public void Execute(EnemyStateHandler entity)
+    public void Execute(EnemyBase entity)
     {
         Debug.Log("Executing Die State");
     }
 
-    public void Exit(EnemyStateHandler entity)
+    public void Exit(EnemyBase entity)
     {
         Debug.Log("Exiting Die State");
     }

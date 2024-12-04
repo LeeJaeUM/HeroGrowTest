@@ -1695,13 +1695,15 @@ MonoBehaviour:
   curAttackDelay: 0
   attackDistance: 8
   isDeath: 0
-  isMoveToPlayer: 1
+  canChase: 1
+  canAttack: 0
+  canPatternMove: 0
+  TESTDIS: 0
   agent: {fileID: 0}
   animController: {fileID: 0}
   rotationSpeed: 18
   rotationTime: 0.4
   noRunDistance: 4
-  TESTDIS: 0
 --- !u!195 &6408167311480293801
 NavMeshAgent:
   m_ObjectHideFlags: 0

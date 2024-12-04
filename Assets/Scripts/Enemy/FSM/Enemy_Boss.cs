@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyStateHandler_Boss : EnemyStateHandler, IAction
+public class Enemy_Boss : EnemyBase, IAction
 {
 
     public override bool IsAttackable()

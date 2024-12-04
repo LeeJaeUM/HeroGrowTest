@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyStateHandler_Range : EnemyStateHandler, IAction
+public class Enemy_Range : EnemyBase
 {
     BulletSpawner bulletSpawner;
     public float rotationSpeed = 18f;
@@ -9,7 +9,6 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
     public float noRunDistance = 2f;
     private float bulletDelay = 0.2f;
 
-    public float TESTDIS = 0;
 
     protected override void Awake()
     {
@@ -35,9 +34,9 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
 
     public override void AttackingAction()
     {
-        base.AttackingAction(); 
-
+        base.AttackingAction();
         RotateTowards(target.position);
+        agent.ResetPath();
     }
 
     public void RotateTowards(Vector3 targetPosition)
@@ -65,22 +64,14 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
     {
         bool result = false;
 
-        float distanceDifference = attackDistance - GetDistanceToPlayer();
-        TESTDIS = distanceDifference;
-        if (distanceDifference <= 0)        //멀때
+        if (GetDistanceToPlayer() > attackDistance)//멀때
         {
             canAttack = false;
         }
-        else if (distanceDifference <= noRunDistance)    //공격범위내
-        {
-            canAttack = true;
-            agent.ResetPath();
-        }
         else
         {
-            canAttack = true;                 //너무 가까울때
+            canAttack = true;
         }
-
         result = canAttack;
         return result;
     }
@@ -88,27 +79,29 @@ public class EnemyStateHandler_Range : EnemyStateHandler, IAction
     public override bool IsChaseable()
     {
         bool result = false;
-
-        float distanceDifference = attackDistance - GetDistanceToPlayer();
-        TESTDIS = distanceDifference;
-        if (distanceDifference <= noRunDistance)    //멀때//공격범위내
+        if(GetDistanceToPlayer() > attackDistance)//멀때
         {
-            isChase = true;
+            canChase = true;
         }
         else
         {
-            isChase = false;     //너무 가까울때
+            canChase = false;
         }
-        result = isChase;
+        result = canChase;
         return result;
     }
 
     public override bool IsPatternMoveable()
     {
         bool result = false;
-        if (!isChase && curAttackDelay < attackDelay)
+        if (GetDistanceToPlayer() < attackDistance - noRunDistance)
+        {
             canPatternMove = true;
-
+        }
+        else
+        {
+            canPatternMove = false;
+        }
         result = canPatternMove;
         return result;
     }

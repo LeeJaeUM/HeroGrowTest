@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.EventSystems.EventTrigger;
 
-public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
+public class EnemyBase : FSM<EnemyBase>, IAction
 {
     public float moveSpeed = 3.0f;
     public Transform target; // 플레이어의 트랜스폼
@@ -12,9 +12,11 @@ public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
     public float curAttackDelay = 0;
     public float attackDistance = 0.5f;
     public bool isDeath = false;
-    public bool isChase = true;
+    public bool canChase = true;
     public bool canAttack = false;
     public bool canPatternMove = false;
+    
+    public float TESTDIS = 0;
 
 
     [HideInInspector]
@@ -42,6 +44,7 @@ public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
     private void Update()
     {
         FSMUpdate();
+        TESTDIS = GetDistanceToPlayer();
     }
 
     protected virtual void Initialize()
@@ -52,14 +55,17 @@ public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
     }
 
     // 행동에 따른 메서드 추가
-    public abstract void Move();
+    public virtual void Move()
+    {
+        agent.SetDestination(target.position);
+    }
     public virtual void Attack()
     {
         animController.AttackAnim();
     }
-    public abstract bool IsAttackable();
+    public virtual bool IsAttackable() { return false; }
 
-    public virtual void AttackingAction() 
+    public virtual void AttackingAction()
     {
         curAttackDelay += Time.deltaTime;
         if (curAttackDelay > attackDelay)
@@ -71,7 +77,7 @@ public abstract class EnemyStateHandler : FSM<EnemyStateHandler>
 
     public virtual bool IsChaseable() { return false; }
 
-    public virtual bool IsPatternMoveable() {  return false; }
+    public virtual bool IsPatternMoveable() { return false; }
 
     public virtual void PatternMove() { }
 

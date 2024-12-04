@@ -10,7 +10,7 @@ public class EnemyManager : MonoBehaviour
     CharacterHP characterHP;
 
     //EnemyControllerBase controller;
-    EnemyStateHandler enemyStateHandler;
+    EnemyBase enemyStateHandler;
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class EnemyManager : MonoBehaviour
         characterHP.OnDead += DeadEnemy;
 
         //controller = GetComponent<EnemyControllerBase>();
-        enemyStateHandler = GetComponent<EnemyStateHandler>();
+        enemyStateHandler = GetComponent<EnemyBase>();
     }
 
     private void OnDisable()
