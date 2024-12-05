@@ -31,7 +31,7 @@ public class ChaseState : FSMSingleton<ChaseState>,IState<EnemyBase>
     public void Enter(EnemyBase entity)
     {
         Debug.Log("Entering Move State");
-        entity.animController.SetIsMoveParameter(true);
+        entity.ChaseEnter();
     }
 
     public void Execute(EnemyBase entity)
@@ -62,7 +62,7 @@ public class ChaseState : FSMSingleton<ChaseState>,IState<EnemyBase>
     public void Exit(EnemyBase entity)
     {
         Debug.Log("Exiting Move State");
-        entity.animController.SetIsMoveParameter(false);
+        entity.ChaseExit();
     }
 }
 

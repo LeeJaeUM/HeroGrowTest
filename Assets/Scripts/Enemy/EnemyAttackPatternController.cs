@@ -1,75 +1,53 @@
 using UnityEngine;
 
+//public enum AttackPattern
+//{
+//    Pattern0 = 0,
+//    Pattern1 = 1,
+//    Pattern2 = 2,
+//}
+
 public class EnemyAttackPatternController : MonoBehaviour
 {
     public float attackDelay = 3f;
     public float curAttackDelay = 0;
     public float attackDistance = 9f;
-    public int curPatternIndex = 0;
-    public int maxPatternIndex = 1;
 
-    public float dashDistance = 10f;
-    public float dashSpeed = 6f;
 
     public bool canAttack = false;
+    public bool isAttacking = false;
+
+    //private AttackPattern curAttackPattern;
+    //public AttackPattern CurAttackPattern
+    //{
+    //    get => curAttackPattern;
+    //    private set => curAttackPattern = value;
+    //}
+
 
     public Transform target;
 
     private void Start()
     {
         SetTarget();
-        SettingPattern(0);
     }
 
     private void Update()
     {
-        curAttackDelay += Time.deltaTime;
     }
+
+    //public bool CheckChaseable()
+    //{
+    //    //공격중일떄
+    //    if (isAttacking)
+    //    {
+
+    //    }
+    //    return !isAttacking;
+    //}
 
     //돌진패턴
     //십자 레이저 패턴
-    public bool CheckAttackable()
-    {
-        bool result = false;
-        if(curAttackDelay > attackDelay && GetDistanceToPlayer() < attackDistance)
-        {
-            curAttackDelay = 0;
-            result = true;
-        }
-
-        return result;
-    }
-    public bool CheckPatternMoveable()
-    {
-        bool result = false;
-        if (curPatternIndex == 0)
-        {
-            result = true;
-        }
-        return result;
-    }
-
-
-    public void SettingPattern(int index)
-    {
-        curPatternIndex = index;
-        switch (index)
-        {
-            case 0:
-                SetPatternParmeters(3f, 6f);
-                break;
-            case 1:
-                SetPatternParmeters(5f, 12f);
-                break;
-        }
-    }
-
-    private void SetPatternParmeters(float _atkDelay, float _atkDistance)
-    {
-        attackDelay = _atkDelay;
-        attackDistance = _atkDistance;
-        
-    }
 
 
 

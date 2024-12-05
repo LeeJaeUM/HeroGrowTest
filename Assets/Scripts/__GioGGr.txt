@@ -81,3 +81,16 @@ start함수에서 연결을
 
 MoveState를 patrol과 chase state로 구분
 뱀서에선 거의 같기에 move하나만 사용 중
+
+    /*
+    보스 움직임 노선도
+    시작 시 idle에서 시작
+    바로 target인 플레이어를 찾고
+    chase로 변환
+    chaseEnter에서 공격 패턴 설정
+       그리고 공격 거리안에 들어오면 attackable로 
+        attack으로 넘어감
+    이때 attackEnter에서 공격 시 대기 시간이나 공격에 맞는 사거리표시
+    설정 및 생성
+    attack에서 
+     */

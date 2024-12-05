@@ -13,4 +13,7 @@ public interface IAction
 
     public void PatternMoveEnter();
     public void PatternMoveExit();
+
+    public void ChaseEnter();
+    public void ChaseExit();
 }

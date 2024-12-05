@@ -5,7 +5,8 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyBase : FSM<EnemyBase>, IAction
 {
-    public float moveSpeed = 3.0f;
+    public float defaultMoveSpeed = 3.0f;
+    public float curMoveSpeed = 3.0f;
     public Transform target; // 플레이어의 트랜스폼
 
     public float attackDelay = 2f;
@@ -16,6 +17,7 @@ public class EnemyBase : FSM<EnemyBase>, IAction
     public bool canAttack = false;
     public bool canPatternMove = false;
     public bool isPatternMoving = false;
+    public bool isAttacking = false;
     public bool isTargetToPlayer = true;
     
     public float TESTDIS = 0;
@@ -33,7 +35,7 @@ public class EnemyBase : FSM<EnemyBase>, IAction
     private void OnEnable()
     {
         if (agent != null)
-            agent.speed = moveSpeed;
+            agent.speed = curMoveSpeed;
         isDeath = false;
     }
 
@@ -43,7 +45,7 @@ public class EnemyBase : FSM<EnemyBase>, IAction
         InitState(this, new IdleState());
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         FSMUpdate();
         TESTDIS = GetDistanceToPlayer();
@@ -53,7 +55,7 @@ public class EnemyBase : FSM<EnemyBase>, IAction
     {
         animController = GetComponent<EnemyAnimationController>();
         agent = GetComponent<NavMeshAgent>(); // NavMeshAgent 컴포넌트 가져오기
-        agent.speed = moveSpeed;
+        agent.speed = curMoveSpeed;
     }
 
     // 행동에 따른 메서드 추가
@@ -149,5 +151,14 @@ public class EnemyBase : FSM<EnemyBase>, IAction
     {
         animController.SetIsMoveParameter(false);
         isTargetToPlayer = true;
+    }
+
+    public virtual void ChaseEnter()
+    {
+       animController.SetIsMoveParameter(true);
+    }
+    public virtual void ChaseExit()
+    {
+        animController.SetIsMoveParameter(false);
     }
 }
