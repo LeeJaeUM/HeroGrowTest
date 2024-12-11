@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy_Boss : EnemyBase
@@ -6,14 +7,16 @@ public class Enemy_Boss : EnemyBase
     public int maxPatternIndex = 2;
 
     public float dashDistance = 10f;
-    public float dashSpeed = 6f;
+    public float dashSpeed = 8f;
+    public float rotationDuration = 0.1f;
     public float lateTime = 1f;
 
-    public float lineSpawnDistance = 5f;
+    public float lineSpawnDistance = 4f;
 
     Vector3 arrivalPoint = Vector3.zero;
 
     public GameObject dangerLine = null;
+
 
     protected override void Awake()
     {
@@ -43,7 +46,7 @@ public class Enemy_Boss : EnemyBase
     {
         //공격중이 아닐 때 공격거리를 벗어나면 chaseState로 변경
         bool result = false;
-        if(!isAttacking && GetDistanceToPlayer() >= attackDistance)
+        if(!isAttacking) //&& GetDistanceToPlayer() >= attackDistance)
         {
             result = true;
         }
@@ -65,19 +68,18 @@ public class Enemy_Boss : EnemyBase
     }
     public override void AttackEnter()
     {
+        agent.ResetPath();
         //공격 시작 시 공격 범위를 지정된 패턴으로 변경
         isAttacking = true;
         switch (curPatternIndex)
         {
             case 0:
                 SetDashAttackPoint();
-                SpawnDangerLine();
                 break;
             case 1:
                 break;
 
         }
-        agent.ResetPath();
     }
     public override void AttackingAction()
     {
@@ -89,61 +91,36 @@ public class Enemy_Boss : EnemyBase
                 {
                     agent.SetDestination(arrivalPoint);
                 }
-                if (curAttackDelay >  attackDelay - 0.5f)
-                {
-                    isAttacking = false;
-                }
                     break;
             case 1:
                 break;
 
         }
+        if (curAttackDelay > attackDelay)
+        {
+            isAttacking = false;
+        }
     }
 
-    public void SetDashAttackPoint()
-    {
-        // 플레이어의 방향을 구합니다.
-        Vector3 directionToPlayer = GetDirectionToPlayer();
+    #region AttackPatternSettingFunctions-----------------------=============------------------@@@
 
-        // 현재 오브젝트의 위치에서 뒤쪽으로 이동한 지점을 계산합니다.
-        arrivalPoint = transform.position +
-            directionToPlayer.normalized * dashDistance;
-
-
-        //이동속도 변경
-        curMoveSpeed = dashSpeed;
-        agent.speed = dashSpeed;
-    }
-
-    #region MyRegion-----------------------=============------------------@@@
-    //public bool CheckAttackable()
-    //{
-    //    bool result = false;
-    //    if (curAttackDelay > attackDelay && GetDistanceToPlayer() < attackDistance)
-    //    {
-    //        curAttackDelay = 0;
-    //        result = true;
-    //    }
-
-    //    return result;
-    //}
-
-    public void SetRandomPattern()
+    private void SetRandomPattern()
     {
         int random = UnityEngine.Random.Range(0, maxPatternIndex + 1);
         SettingPattern(random);
     }
 
-    public void SettingPattern(int index)
+    //switch문은 밖에서 조절가능하도록 변경해야함
+    private void SettingPattern(int index)
     {
         curPatternIndex = index;
         switch (index)
         {
             case 0:
-                SetPatternParmeters(2f, 6f);
+                SetPatternParmeters(3f, 6f);
                 break;
             case 1:
-                SetPatternParmeters(5f, 12f);
+                SetPatternParmeters(4f, 12f);
                 break;
         }
         curAttackDelay = 0;
@@ -171,4 +148,40 @@ public class Enemy_Boss : EnemyBase
             Debug.LogWarning("dangerLine 또는 target 변수가 설정되지 않았습니다.");
         }
     }
+
+    #region DashAttack
+
+    public void SetDashAttackPoint()
+    {
+        StartCoroutine(RotateTowards());
+
+        // 현재 오브젝트의 위치에서 뒤쪽으로 이동한 지점을 계산합니다.
+        arrivalPoint = transform.position +
+            GetDirectionToPlayer().normalized * dashDistance;
+
+        //이동속도 변경
+        curMoveSpeed = dashSpeed;
+        agent.speed = dashSpeed;
+    }
+    private IEnumerator RotateTowards()
+    {
+        Quaternion initialRotation = transform.rotation;
+        Vector3 directionToPlayer = GetDirectionToPlayer();
+        Quaternion targetRotation = Quaternion.LookRotation(directionToPlayer);
+
+        float elapsedTime = 0f;
+        while (elapsedTime < rotationDuration)
+        {
+            transform.rotation = Quaternion.Slerp(initialRotation, targetRotation, elapsedTime / rotationDuration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        // 마지막으로 정확하게 목표 방향으로 회전시킵니다.
+        transform.rotation = targetRotation;
+
+        //그리고 범위 표시
+        SpawnDangerLine();
+    }
+    #endregion
 }

@@ -1891,8 +1891,10 @@ MonoBehaviour:
   maxPatternIndex: 0
   dashDistance: 10
   dashSpeed: 6
-  lateTime: 1
+  rotationDuration: 0.2
+  lateTime: 1.5
   lineSpawnDistance: 5
+  arrivalPoint: {x: 0, y: 0, z: 0}
   dangerLine: {fileID: 2004175787273502681, guid: b2b4fa97163d5154393febf5335a54a5, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

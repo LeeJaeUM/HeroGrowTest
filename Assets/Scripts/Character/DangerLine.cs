@@ -11,8 +11,8 @@ public class DangerLine : MonoBehaviour
 
     private void OnEnable()
     {
-    //    if (expandLine == null)
-    //        expandLine = transform.GetChild(0).gameObject.transform;
+        if (expandLine == null)
+            expandLine = transform.GetChild(0).gameObject.transform;
         elapsedTime = 0f;
         StartCoroutine(Lerp(duration));
     }
