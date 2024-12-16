@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -6,12 +7,28 @@ public class Bullet : MonoBehaviour
     public float lifeTime = 5f;  // Bullet's lifetime before it's destroyed
     public float damageAmount = 10.0f;
     public bool isEnemyBullet = true;
-
-    private void Start()
+    private void OnDisable()
     {
-        // Destroy the bullet after lifeTime seconds
-        Destroy(gameObject, lifeTime);
+        // 비활성화 될 때 풀로 되돌립니다.
+        if (BulletPool.Instance != null)
+        {
+            BulletPool.Instance.ReturnToPool(this);
+        }
     }
+
+    public void Initialize(Vector3 position, Vector3 direction)
+    {
+        transform.position = position;
+        transform.rotation = Quaternion.Euler(direction);
+        StartCoroutine(InitialCo());
+    }
+
+    //private void Start()
+    //{
+    //    // Destroy the bullet after lifeTime seconds
+    //    Destroy(gameObject, lifeTime);
+        
+    //}
 
     private void Update()
     {
@@ -41,5 +58,11 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+    }
+
+    private IEnumerator InitialCo()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        OnDisable();
     }
 }
